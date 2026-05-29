@@ -4,7 +4,7 @@ Ferramenta web para avaliação de maturidade dos **CIS Controls v8** com análi
 
 ## ✨ Funcionalidades
 
-- **152 Safeguards** dos 18 CIS Controls v8
+- **153 Safeguards** dos 18 CIS Controls v8
 - **Salvar e retomar** — progresso salvo automaticamente
 - **Avaliação por IA** — Ollama (local) ou Google Gemini
 - **Relatório executivo** — radar chart, bar chart, top riscos
