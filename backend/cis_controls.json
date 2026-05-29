@@ -1,0 +1,2101 @@
+{
+  "controls": [
+    {
+      "id": 1,
+      "name": "Inventory and Control of Enterprise Assets",
+      "safeguards": [
+        {
+          "id": "1.1",
+          "name": "Establish and Maintain Detailed Enterprise Asset Inventory",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário detalhado de ativos de TI (contendo endereço MAC, IP, owner, status de aprovação) cobre 100% da sua infraestrutura, incluindo dispositivos finais, servidores on-premise, instâncias na nuvem e dispositivos móveis (através de MDM como Intune ou Jamf)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha e atualização das informações deste inventário dependem de preenchimento manual em folhas de cálculo ou ocorrem de forma contínua e automatizada através de agentes, integrações de APIs com Active Directory, EDR (ex: CrowdStrike, Defender) ou ferramentas de ITAM (ex: ServiceNow, Lansweeper)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formalizada exigindo a revisão deste inventário pelo menos semestralmente, e a equipa de TI/Segurança gera indicadores de risco (KPIs) regulares demonstrando a taxa de ativos documentados versus ativos órfãos ou não geridos?"
+          }
+        },
+        {
+          "id": "1.2",
+          "name": "Address Unauthorized Assets",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo para tratar e bloquear ativos não autorizados abrange toda a rede corporativa, contemplando sedes, filiais e conexões remotas (VPN), impedindo o acesso de dispositivos desconhecidos em 100% do ambiente?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ação de contenção de um ativo não autorizado (como remoção ou quarentena) exige uma ação manual do analista ou é automatizada semanalmente através de soluções de NAC (ex: Cisco ISE, Forescout), isolamento via EDR ou scripts (PowerShell/Python) integrados aos switches e firewalls?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O fluxo de identificação e quarentena de dispositivos rogue está documentado num procedimento operacional padrão (POP), gerando métricas periódicas para a direção sobre o volume de ativos bloqueados e o tempo de resposta?"
+          }
+        },
+        {
+          "id": "1.3",
+          "name": "Utilize an Active Discovery Tool",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As varreduras ativas de descoberta (active discovery) cobrem integralmente todas as sub-redes (VLANs) da organização, abrangendo a matriz, filiais e ambientes cloud, sem deixar pontos cegos na rede?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ferramenta de varredura ativa (ex: Nmap, Nessus, Qualys, Lansweeper) está configurada e orquestrada para ser executada de maneira automatizada e diária, ou as varreduras dependem de disparo manual (ad hoc) por um administrador de sistemas?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem relatórios de gestão estruturados oriundos destas ferramentas de descoberta ativa que alimentam a gestão de riscos do negócio, com processos documentados garantindo que novas gamas de IP sejam imediatamente incluídas no âmbito do scan?"
+          }
+        },
+        {
+          "id": "1.4",
+          "name": "Use Dynamic Host Configuration Protocol (DHCP) Logging to Update Enterprise Asset Inventory",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de logs de DHCP para atualização do inventário de ativos é realizada em todos os servidores DHCP (Windows Server, Linux) e appliances de rede em 100% dos locais físicos e remotos da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A análise (parsing) dos logs de DHCP e a sua correlação com o inventário são feitas manualmente ou já estão integradas de forma automatizada via soluções de IPAM (ex: Infoblox) ou enviadas continuamente a um SIEM (ex: Splunk, Microsoft Sentinel) para atualização semanal sem intervenção humana?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há documentação formal que defina a rotina de revisão semanal destes logs, e existem indicadores que cruzem os IPs fornecidos via DHCP com a base de ativos autorizados para reportar discrepâncias de forma estruturada?"
+          }
+        },
+        {
+          "id": "1.5",
+          "name": "Use a Passive Asset Discovery Tool",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A organização implementa descoberta passiva de ativos monitorizando o tráfego em toda a arquitetura de rede, abrangendo o core network, gateways e switches de distribuição em 100% dos locais críticos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A monitorização passiva é realizada através de ferramentas contínuas e automatizadas (ex: espelhamento de portas SPAN/TAP alimentando sensores de NDR como ExtraHop, Darktrace ou Tenable.ot) ou é feita de maneira ad hoc com capturas manuais de pacotes (ex: Wireshark)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de ingestão das descobertas passivas para atualizar o inventário possui um fluxo documentado, com métricas semanais reportadas ao nível executivo evidenciando os novos ativos descobertos apenas pela monitorização de tráfego?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Inventory and Control of Software Assets",
+      "safeguards": [
+        {
+          "id": "2.1",
+          "name": "Establish and Maintain a Software Inventory",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário detalhado de software licenciado (incluindo título, fabricante, data de instalação, versão) cobre 100% dos ativos da organização, abrangendo servidores, workstations e dispositivos móveis (ex: iOS/Android via MDM)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha e atualização das informações de software depende de auditorias manuais através de folhas de cálculo, ou é centralizada e automatizada de forma contínua através de ferramentas de ITSM/ITAM ou gestão de endpoints (ex: ServiceNow, Flexera, Lansweeper, Microsoft SCCM/Intune)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal que exija a revisão deste inventário com frequência pelo menos semestral, e a equipa gera indicadores (KPIs) para a direção sobre volume de softwares instalados versus licenças adquiridas (compliance)?"
+          }
+        },
+        {
+          "id": "2.2",
+          "name": "Ensure Authorized Software is Currently Supported",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de verificação do suporte contínuo de softwares (End of Life / End of Support) é aplicado a 100% do parque informático, englobando sistemas operativos, aplicações de terceiros e middleware em todas as localizações?",
+            "q2_label": "Execução e Automação",
+            "q2": "A identificação de softwares obsoletos é feita de forma ad hoc e manual por analistas, ou utilizam-se plataformas de gestão de vulnerabilidades e patches (ex: Qualys, Tenable, WSUS) que sinalizam continuamente softwares sem suporte ativo na rede?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um processo de exceção documentado para softwares não suportados (exigindo controlos compensatórios e aceitação de risco), gerando métricas mensais reportadas ao negócio sobre o volume de ativos a correr software obsoleto?"
+          }
+        },
+        {
+          "id": "2.3",
+          "name": "Address Unauthorized Software",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de tratamento e remoção de software não autorizado abrange a totalidade dos ativos da organização, garantindo que nenhum ambiente on-premise, cloud ou dispositivo remoto escape à regra?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ação corretiva sobre softwares proibidos exige a desinstalação manual pela equipa de helpdesk, ou é executada automaticamente através de scripts (ex: PowerShell), GPOs de bloqueio ou políticas de desinstalação via ferramentas de UEM (ex: Workspace ONE, Intune)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O fluxo de identificação, remoção ou documentação de exceções possui uma rotina de revisão mensal formalizada num procedimento (POP), produzindo relatórios de gestão sobre o volume de software banido detetado e o SLA de tempo de remoção?"
+          }
+        },
+        {
+          "id": "2.4",
+          "name": "Utilize Automated Software Inventory Tools",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A utilização de ferramentas automatizadas para o inventário de software está uniformizada em 100% dos segmentos de rede e ambientes corporativos, sem deixar zonas cegas na visibilidade dos ativos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O processo depende da execução manual de scripts ou disparos esporádicos, ou baseia-se numa arquitetura em que agentes ou sondas de rede (ex: Tanium, PDQ Inventory, OCS Inventory) realizam a recolha de forma totalmente orquestrada e contínua em background?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem painéis de controlo (dashboards) alimentados diretamente por estas ferramentas que evidenciem, de forma documentada, a taxa de cobertura dos agentes de software em relação ao parque de hardware conhecido?"
+          }
+        },
+        {
+          "id": "2.5",
+          "name": "Allowlist Authorized Software",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O controlo de lista de permissões (allowlisting) para execução de aplicações está implementado e ativo (modo enforcement e não apenas auditoria) em 100% dos servidores, desktops e dispositivos móveis da infraestrutura?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão do que pode ser executado baseia-se em configurações isoladas e manuais de sistemas operativos, ou é gerida de modo orquestrado e contínuo por soluções de Application Control corporativas (ex: AppLocker, Windows Defender Application Control, Trellix Application Control)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de allowlisting é reavaliada formalmente pelo menos semestralmente, contando com relatórios executivos de cibersegurança que medem a taxa de bloqueios de software desconhecido e a volumetria de pedidos de exceção?"
+          }
+        },
+        {
+          "id": "2.6",
+          "name": "Allowlist Authorized Libraries",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A restrição técnica para permitir exclusivamente o carregamento de bibliotecas autorizadas (como ficheiros .dll, .ocx, .so) nos processos do sistema cobre a totalidade dos servidores e endpoints de utilizadores do ambiente?",
+            "q2_label": "Execução e Automação",
+            "q2": "O bloqueio de bibliotecas não autorizadas requer a ação pontual do administrador, ou é uma defesa assegurada de modo proativo e automatizado através de políticas rigorosas de Application Control, EDR/XDR ou proteção de memória avançada?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe documentação estruturada detalhando os critérios ou certificados (ex: assinaturas digitais confidenciais) que autorizam uma biblioteca, com revisões semestrais e métricas formais geradas sobre bibliotecas rogue bloqueadas pelo sistema?"
+          }
+        },
+        {
+          "id": "2.7",
+          "name": "Allowlist Authorized Scripts",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O controlo técnico para prevenir a execução de scripts não autorizados (ex: .ps1, .py, macros) está implementado de forma global, bloqueando execuções ilícitas em 100% dos ambientes Windows, Linux e macOS?",
+            "q2_label": "Execução e Automação",
+            "q2": "A prevenção baseia-se em simples restrições locais de sistema operativo ou integra mecanismos automatizados a nível corporativo, como a exigência de assinaturas digitais válidas (Code Signing) alinhadas a políticas centralizadas (ex: PowerShell Execution Policy via GPO, AppLocker)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de autorização e assinatura de scripts internos está detalhado em normativos de desenvolvimento seguro, sendo sujeito a revisões semestrais e suportando métricas de risco apresentadas à direção sobre scripts maliciosos ou não assinados intercetados?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Data Protection",
+      "safeguards": [
+        {
+          "id": "3.1",
+          "name": "Establish and Maintain a Data Management Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo documentado de gestão de dados (que define sensibilidade, retenção e descarte) abrange 100% dos tipos de dados da organização, incluindo ambientes on-premise, cloud (ex: Office 365, AWS) e bases de dados legadas?",
+            "q2_label": "Execução e Automação",
+            "q2": "A aplicação das diretrizes de gestão de dados depende do esforço manual das equipas de TI ou é suportada e orquestrada de forma contínua por ferramentas de Data Security Posture Management (DSPM) ou plataformas de governança (ex: Varonis, Microsoft Purview)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem revisões formais, no mínimo anuais, deste processo de gestão de dados, gerando métricas de risco para a direção que comprovem a conformidade da organização em relação a leis de privacidade (ex: RGPD)?"
+          }
+        },
+        {
+          "id": "3.2",
+          "name": "Establish and Maintain a Data Inventory",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário de dados críticos e sensíveis cobre a totalidade dos ativos e silos da organização, abrangendo todos os file servers, bases de dados (ex: SQL, Oracle) e serviços cloud sem deixar zonas de sombra?",
+            "q2_label": "Execução e Automação",
+            "q2": "A descoberta e atualização deste inventário de dados são feitas através de inquéritos manuais, ou utilizam soluções automatizadas de Data Discovery (ex: BigID, OneTrust, Netwrix) que mapeiam continuamente a localização de dados sensíveis?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O inventário é revisto anualmente através de um processo documentado, produzindo indicadores-chave (KPIs) para a gestão sobre a volumetria e localização de dados sensíveis face aos controlos de segurança aplicados?"
+          }
+        },
+        {
+          "id": "3.3",
+          "name": "Configure Data Access Control Lists",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação de listas de controlo de acessos (ACLs) estritamente baseadas no princípio do menor privilégio cobre 100% dos repositórios de ficheiros (ex: DFS, SharePoint), bases de dados e aplicações empresariais?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão de acessos (ACLs) é feita localmente e de forma ad hoc, ou é gerida de modo centralizado e automatizado através de diretórios (ex: Active Directory, Entra ID) e plataformas de IAM/PAM que provisionam os acessos dinamicamente?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um fluxo documentado de auditoria periódica gerando métricas mensais sobre o risco de acessos, detalhando, por exemplo, o volume de permissões excessivas, ficheiros com acessos globais ou utilizadores inativos não revogados?"
+          }
+        },
+        {
+          "id": "3.4",
+          "name": "Enforce Data Retention",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação das políticas de retenção de dados (prazos mínimos e máximos) é efetiva em 100% dos repositórios, incluindo caixas de email (ex: Exchange), arquivos mortos, documentação departamental e backups?",
+            "q2_label": "Execução e Automação",
+            "q2": "A eliminação ou o arquivo de dados após expirar o prazo exige intervenção manual de um administrador, ou tira partido de execução automatizada contínua por plataformas de Information Governance (ex: Microsoft Purview Retention Policies, Veritas Enterprise Vault)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem normativos formais aprovados pela gestão sobre os prazos de retenção, produzindo relatórios com métricas sobre o volume de dados eliminados com segurança e a redução de custos e riscos legais de armazenamento?"
+          }
+        },
+        {
+          "id": "3.5",
+          "name": "Securely Dispose of Data",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de eliminação segura (secure wipe/shredding) abrange 100% dos suportes de armazenamento, desde discos rígidos e SSDs locais até contentores cloud (ex: Amazon S3) e dispositivos móveis fora de uso?",
+            "q2_label": "Execução e Automação",
+            "q2": "A destruição de dados no dia a dia é manual e dependente do critério do técnico, ou baseia-se em mecanismos contínuos de sanitização validada com ferramentas certificadas (ex: Blancco, padrões DoD 5220.22-M) e processos orquestrados de desativação?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem políticas formalizadas detalhando os métodos de destruição adequados a cada nível de sensibilidade do dado, suportadas por certificados e relatórios gerenciais sobre o volume de hardware e dados sanitizados anualmente?"
+          }
+        },
+        {
+          "id": "3.6",
+          "name": "Encrypt Data on End-User Devices",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A criptografia total de disco (Full Disk Encryption) está a operar eficazmente em 100% dos computadores portáteis, estações de trabalho e dispositivos móveis (smartphones/tablets) que processam dados corporativos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ativação da criptografia nos equipamentos requer a ação manual do utilizador/helpdesk, ou é forçada silenciosamente e gerida de forma automatizada por ferramentas de gestão de endpoints e MDM (ex: Intune acionando BitLocker, Jamf garantindo o FileVault)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O controlo de criptografia de discos possui documentação estruturada associada a dashboards executivos que alertam proativamente a segurança sobre a percentagem de dispositivos corporativos em incumprimento ou com falha na gestão de chaves de recuperação?"
+          }
+        },
+        {
+          "id": "3.7",
+          "name": "Establish and Maintain a Data Classification Scheme",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O esquema de classificação de dados (ex: Público, Interno, Confidencial) encontra-se implementado e aplicável de forma transversal a toda a informação gerada, processada e armazenada em 100% do ambiente de TI?",
+            "q2_label": "Execução e Automação",
+            "q2": "A rotulagem (labeling) da classificação é um esforço puramente manual e opcional do utilizador, ou integra regras de classificação automática baseadas no conteúdo e orquestradas por soluções avançadas (ex: Microsoft AIP / Purview, Titus, Boldon James)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A matriz e os critérios de classificação estão definidos numa política formal, gerando visibilidade e métricas ao nível de gestão (C-Level) baseadas na taxa de classificação da informação e no volume de novos dados classificados como 'Críticos'?"
+          }
+        },
+        {
+          "id": "3.8",
+          "name": "Document Data Flows",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A documentação dos fluxos de dados sensíveis mapeia de forma integral 100% dos processos core da organização, desde a recolha nos sistemas on-premise até às transmissões para parceiros terceiros e plataformas Cloud (SaaS/PaaS)?",
+            "q2_label": "Execução e Automação",
+            "q2": "O mapeamento de fluxos depende apenas de reuniões e desenhos manuais no Visio, ou é construído e atualizado de forma contínua através de plataformas de Data Flow Mapping e GRC (ex: OneTrust, Securiti.ai) que intercetam e descobrem transferências de dados?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Os diagramas e mapeamentos estão integrados numa governança formal, com revisões documentadas anualmente, produzindo indicadores de risco sobre desvios de tráfego, shadow IT ou partilhas com fornecedores não homologados?"
+          }
+        },
+        {
+          "id": "3.9",
+          "name": "Encrypt Data on Removable Media",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A imposição técnica de criptografia está ativa sobre 100% dos dispositivos de armazenamento amovíveis (ex: Pens USB, discos externos) que se liguem à infraestrutura corporativa e equipamentos remotos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O processo de encriptação é deixado à responsabilidade manual e ad hoc do utilizador, ou é rigorosamente imposto, bloqueando a escrita em cleartext de forma automatizada via soluções de Endpoint Security (ex: Symantec Endpoint Encryption, BitLocker To Go, Trellix)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de segurança restringe explicitamente as condições de utilização de suportes amovíveis num documento formal, gerando métricas periódicas das soluções de controlo sobre incidentes de dispositivos bloqueados ou tentativas de extração de dados?"
+          }
+        },
+        {
+          "id": "3.10",
+          "name": "Encrypt Sensitive Data in Transit",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A utilização de protocolos criptográficos robustos e atuais (ex: TLS 1.2+, SSHv2, IPsec) abrange 100% do trânsito de dados sensíveis na rede interna, comunicações entre datacenters e acessos externos (cloud/internet)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A renovação de certificados e garantia de cifra depende de ações de sistema a sistema, ou está validada continuamente por mecanismos de orquestração e gestão de certificados (ex: Venafi) ou scanners de rede (ex: Tenable, Qualys) que bloqueiam tráfego cleartext?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura corporativa exige documentalmente a cifra in transit em todos os novos projetos, suportada por relatórios formais mensais evidenciando métricas de conformidade como protocolos legados detetados (ex: Telnet, SSLv3) e certificados próximos do fim de validade?"
+          }
+        },
+        {
+          "id": "3.11",
+          "name": "Encrypt Sensitive Data at Rest",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A criptografia de dados em repouso (Data at Rest) protege efetivamente 100% das bases de dados sensíveis, storages (SAN/NAS) e instâncias ou buckets de armazenamento em ambientes Cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão, rotação e armazenamento de chaves criptográficas é feita de modo isolado em ficheiros ou configurações locais (ad hoc), ou baseia-se numa orquestração automatizada e centralizada de HSMs ou KMS corporativos (ex: AWS KMS, Azure Key Vault, HashiCorp Vault)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A organização tem um normativo operacional padronizado sobre o ciclo de vida criptográfico, incluindo auditorias formais que providenciam indicadores periódicos à direção sobre ativos sensíveis não cifrados ou chaves sem rotação regulamentar?"
+          }
+        },
+        {
+          "id": "3.12",
+          "name": "Segment Data Processing and Storage Based on Sensitivity",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A segmentação arquitetural (seja física ou lógica) garante que 100% do processamento e armazenamento de dados sensíveis (ex: dados bancários, saúde) estão isolados de redes públicas, estações não geridas ou ambientes de testes?",
+            "q2_label": "Execução e Automação",
+            "q2": "O isolamento dos dados confidenciais baseia-se unicamente na configuração estática e manual de firewalls tradicionais/VLANs, ou já utiliza princípios automatizados e contínuos de Microsegmentação e Zero Trust (ex: VMware NSX, Illumio, Cisco Tetration) nas cargas de trabalho?",
+            "q3_label": "Governança e Métricas",
+            "q3": "As fronteiras de segmentação baseadas na criticidade da informação estão expressas na documentação de arquitetura de segurança, sendo auditadas de modo a reportar métricas executivas de risco (ex: deteção de tráfego cross-zone não autorizado ou violações de compliance)?"
+          }
+        },
+        {
+          "id": "3.13",
+          "name": "Deploy a Data Loss Prevention Solution",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A cobertura da ferramenta de Prevenção de Perda de Dados (DLP) engloba ativamente 100% dos vetores críticos por onde dados podem ser exfiltrados: endpoints, canais de email, navegação web e cloud (através de soluções CASB/SaaS)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A identificação e interceção de fugas de dados é pontual e analisada a posteriori pelos analistas de SOC, ou atua em modo preventivo e automatizado, com bloqueio contínuo em tempo real via suites corporativas de DLP (ex: Symantec, Forcepoint, Netskope, Microsoft Purview DLP)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A equipa de segurança detém um processo formal de gestão de eventos e afinação de regras do DLP (tunning de falsos positivos), entregando relatórios de risco ao board com métricas sobre tentativas mitigadas de extração de propriedade intelectual e dados pessoais?"
+          }
+        },
+        {
+          "id": "3.14",
+          "name": "Log Sensitive Data Access",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de registos (logs) de acesso, modificação ou eliminação efetuados sobre ativos com dados sensíveis tem uma cobertura abrangente em 100% das aplicações core, bases de dados de negócio e repositórios de ficheiros críticos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A capacidade técnica de correlacionar quem acedeu indevidamente aos dados sensíveis implica pesquisas brutas e demoradas pelo sysadmin, ou os logs já são ingeridos e correlacionados continuamente numa solução SIEM ou Database Activity Monitoring (ex: IBM Guardium, Splunk, Microsoft Sentinel)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma diretiva corporativa que assegure formalmente a centralização imutável destes logs, sendo analisados periodicamente para criar métricas de User Behavior Analytics (UBA) que reportam anomalias, acessos em horários indevidos ou quebra de segregação de funções à gestão?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Secure Configuration of Enterprise Assets and Software",
+      "safeguards": [
+        {
+          "id": "4.1",
+          "name": "Establish and Maintain a Secure Configuration Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de configuração segura (hardening) está aplicado de forma uniforme a 100% dos ativos da organização, cobrindo servidores (Windows/Linux), estações de trabalho e dispositivos móveis ou IoT?",
+            "q2_label": "Execução e Automação",
+            "q2": "A aplicação das baselines de segurança requer configurações manuais máquina a máquina, ou é orquestrada e garantida de forma contínua através de ferramentas automatizadas (ex: GPOs do Active Directory, Microsoft Intune, Ansible, Chef ou Puppet)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal que exija a revisão anual dos padrões de hardening (ex: alinhados aos CIS Benchmarks), gerando métricas executivas que mostrem a percentagem de desvios de configuração na rede?"
+          }
+        },
+        {
+          "id": "4.2",
+          "name": "Establish and Maintain a Secure Configuration Process for Network Infrastructure",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O padrão de configuração segura para infraestrutura de rede cobre 100% dos equipamentos físicos e virtuais, abrangendo todos os switches, routers, firewalls e balanceadores físicos e cloud da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A configuração dos ativos de rede depende do acesso manual aos equipamentos (CLI), ou é mantida através de automação contínua e repositórios centralizados de configuração (ex: SolarWinds NCM, Cisco DNA Center, ou Infrastructure-as-Code via Terraform/Ansible)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe documentação estruturada e auditada anualmente para o hardening de rede, produzindo indicadores (KPIs) sobre a deteção e correção de desvios (configuration drift) nos ativos críticos de comunicação?"
+          }
+        },
+        {
+          "id": "4.3",
+          "name": "Configure Automatic Session Locking on Enterprise Assets",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O bloqueio automático de sessão por inatividade (ex: ecrã bloqueado após 15 min em PCs e 2 min em mobile) está em vigor em 100% dos terminais, incluindo servidores, desktops corporativos e dispositivos móveis geridos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O bloqueio baseia-se na boa vontade e configuração local por parte do utilizador, ou é imposto de forma irrevogável e automatizada a nível centralizado (ex: Políticas de GPO de Windows, Jamf Pro Configuration Profiles para macOS ou MDM em mobile)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O requisito de bloqueio de ecrã está redigido num normativo de segurança de end-users, com controlos compensatórios documentados e métricas periódicas para terminais que, por necessidade de negócio, solicitem exceções à regra?"
+          }
+        },
+        {
+          "id": "4.4",
+          "name": "Implement and Manage a Firewall on Servers",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As firewalls locais baseadas em host (host-based firewalls) estão ativas e configuradas em 100% dos servidores físicos e virtuais (Windows e Linux) do datacenter e ambientes cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão de regras nestes servidores é configurada pontualmente de forma manual (ex: iptables isolados ou Windows Firewall local), ou é orquestrada de modo centralizado e contínuo através de agentes de segurança (ex: Trellix, Trend Micro Deep Security, ou plataformas de microsegmentação como Illumio)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura de firewalls de host obedece a um processo documentado de revisão de regras (default-deny), sendo auditado para gerar métricas de risco gerencial sobre servidores com portas desnecessariamente expostas?"
+          }
+        },
+        {
+          "id": "4.5",
+          "name": "Implement and Manage a Firewall on End-User Devices",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As firewalls locais com política restritiva (default-deny para tráfego de entrada) estão a ser aplicadas em 100% dos computadores portáteis e desktops utilizados pelos colaboradores, mesmo quando fora da rede corporativa?",
+            "q2_label": "Execução e Automação",
+            "q2": "A verificação e imposição destas firewalls ocorre de modo reativo através de pedidos de helpdesk, ou é gerida e monitorizada continuamente por soluções de Endpoint Security (ex: CrowdStrike Falcon Firewall Management, Windows Defender Firewall via GPO/Intune)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um processo formal e documentado para autorização de abertura de portas locais nestes equipamentos, gerando relatórios executivos sobre o volume de incidentes em que a firewall local bloqueou tentativas de varredura (scans) na rede LAN?"
+          }
+        },
+        {
+          "id": "4.6",
+          "name": "Securely Manage Enterprise Assets and Software",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A utilização exclusiva de protocolos seguros para gestão administrativa (como SSH com chaves, HTTPS, e proibição estrita de Telnet ou HTTP) cobre 100% das interfaces de gestão de infraestrutura, aplicações e serviços cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "As conexões administrativas seguras são feitas com credenciais simples geridas manualmente, ou são asseguradas via ferramentas centralizadas (ex: cofres de senhas PAM como CyberArk/BeyondTrust) e implementações orquestradas como Infrastructure-as-Code (IaC)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem normas operacionais aprovadas que classifiquem como infração o uso de protocolos em cleartext para gestão, com scanners de rede (ex: Tenable, Qualys) reportando regularmente à direção o número de interfaces administrativas legadas ou inseguras detetadas?"
+          }
+        },
+        {
+          "id": "4.7",
+          "name": "Manage Default Accounts on Enterprise Assets and Software",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A identificação, desativação ou alteração de passwords em contas pré-configuradas por defeito (ex: 'admin', 'root', contas de fábrica) é efetiva em 100% dos novos sistemas operativos, appliances, software e dispositivos IoT introduzidos no parque?",
+            "q2_label": "Execução e Automação",
+            "q2": "A mitigação deste risco exige a lembrança manual do técnico na instalação, ou está mecanizada através de processos automatizados de provisionamento e integração contínua com soluções de gestão de passwords locais (ex: Microsoft LAPS)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de hardening exige formalmente a mudança das credenciais padrão antes da entrada em produção, com auditorias automatizadas mensais gerando KPIs de risco sobre equipamentos que ainda mantêm utilizadores ou passwords de fábrica?"
+          }
+        },
+        {
+          "id": "4.8",
+          "name": "Uninstall or Disable Unnecessary Services on Enterprise Assets and Software",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O encerramento ou remoção de serviços desnecessários e portas não utilizadas (ex: partilhas de ficheiros antigas, SMBv1, spooler de impressão em DCs) é aplicado em 100% das imagens master e servidores em produção da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A remoção de funcionalidades não essenciais é realizada manualmente e de forma ad hoc, ou é impulsionada através de ferramentas automatizadas de avaliação (ex: CIS-CAT Pro, Nessus) combinadas com scripts (PowerShell) ou Configuration Management (Puppet/GPO)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um catálogo documentado de serviços aprovados para cada perfil de servidor, gerando métricas e dashboards executivos sobre a taxa de sucesso de conformidade dos servidores perante os standards internos da organização?"
+          }
+        },
+        {
+          "id": "4.9",
+          "name": "Configure Trusted DNS Servers on Enterprise Assets",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A imposição de resolução de nomes (DNS) utilizando exclusivamente servidores de confiança e validados pela segurança estende-se a 100% da rede interna, servidores de DHCP, filiais e equipamentos de utilizadores remotos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A configuração de DNS é introduzida manualmente na placa de rede, ou controlada e forçada de modo centralizado e contínuo pelos appliances de rede e soluções de DNS Security (ex: Cisco Umbrella, Infoblox, Cloudflare) que bloqueiam tentativas de alteração local?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há um procedimento formal que proíba a utilização de DNS de terceiros não homologados, sendo avaliado trimestralmente e gerando métricas de negócio baseadas na quantidade de bloqueios efetuados a pedidos de DNS ilícitos (ex: tráfego para C2 servers)?"
+          }
+        },
+        {
+          "id": "4.10",
+          "name": "Enforce Automatic Device Lockout on Portable End-User Devices",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O bloqueio e bloqueio automático do dispositivo (lockout) após sucessivas falhas de autenticação local cobre 100% dos dispositivos portáteis (laptops limite de 20 tentativas; tablets e smartphones limite de 10 tentativas)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A aplicação destes limites depende da configuração efetuada pelos utilizadores finais, ou é rigorosamente aplicada a nível da organização através de soluções automatizadas (ex: Microsoft Intune, VMware Workspace ONE, GPO de Account Lockout)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política documentada sobre segurança em dispositivos móveis que exija estes limiares, reportando à equipa de segurança e de gestão KPIs formais sobre a quantidade de equipamentos em incumprimento com estas configurações?"
+          }
+        },
+        {
+          "id": "4.11",
+          "name": "Enforce Remote Wipe Capability on Portable End-User Devices",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A capacidade tecnológica de formatação e limpeza remota de dados empresariais (Remote Wipe) abrange 100% dos dispositivos portáteis geridos pela organização e que contenham dados corporativos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O comando de remote wipe exige ações complexas e presenciais, ou pode ser despachado de forma centralizada e imediata através do portal de administração de ferramentas de UEM/MDM (ex: MobileIron, Jamf, Intune) em caso de perda ou roubo reportado?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um Procedimento Operacional Padrão (POP) aprovado pela gestão que defina sob que critérios de RH/Segurança um equipamento deve sofrer um Remote Wipe, existindo registos de auditoria gerados sempre que a funcionalidade é acionada?"
+          }
+        },
+        {
+          "id": "4.12",
+          "name": "Separate Enterprise Workspaces on Mobile End-User Devices",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A segmentação técnica que separa logicamente e protege os dados da organização face aos dados pessoais do utilizador encontra-se ativada em 100% dos smartphones e tablets em cenários de BYOD e corporativos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O isolamento baseia-se na confiança perante o utilizador de que este não copia ficheiros, ou é assegurado de modo contínuo por contentores de segurança automatizados e geridos centralmente (ex: Android Work Profile, Apple User Enrollment, Contentores do Intune)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem normas formais e documentadas detalhando o modelo de gestão de mobilidade corporativa (BYOD/CYOD), gerando métricas a nível da diretoria sobre fugas de informação ou partilha ilícita que foram evitadas pelos controlos do workspace?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Account Management",
+      "safeguards": [
+        {
+          "id": "5.1",
+          "name": "Establish and Maintain an Inventory of Accounts",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário centralizado de contas ativas (utilizadores, administradores, serviços) cobre 100% dos sistemas corporativos, desde o Active Directory on-premise até às plataformas cloud (ex: Microsoft Entra ID, AWS IAM) e aplicações legadas?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha e atualização deste inventário de contas é feita através de exportações manuais (ex: scripts soltos, Excel) ou ocorre de forma contínua e automatizada através de soluções de Identity and Access Management (IAM) ou integrações diretas com sistemas de RH (ex: Workday, SAP)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política documentada que exija a revisão e recertificação trimestral deste inventário, originando métricas formais para a gestão sobre contas órfãs detetadas e eliminadas?"
+          }
+        },
+        {
+          "id": "5.2",
+          "name": "Use Unique Passwords",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A obrigatoriedade de palavras-passe únicas e com comprimento mínimo adequado (ex: 8 caracteres com MFA ou 14 sem MFA) é aplicada globalmente a 100% das contas, incluindo contas de serviço e acessos locais em servidores (Windows/Linux) e equipamentos de rede?",
+            "q2_label": "Execução e Automação",
+            "q2": "A validação da complexidade e unicidade da password baseia-se apenas no aviso aos utilizadores, ou é imposta tecnicamente e continuamente através de políticas de domínio (ex: GPO de Fine-Grained Passwords) e soluções que bloqueiam palavras-passe comprometidas (ex: Entra ID Password Protection)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O padrão corporativo de criação de credenciais está documentado num normativo de autenticação, produzindo dashboards executivos ou alertas sobre contas que não cumpram os requisitos técnicos de complexidade e idade máxima?"
+          }
+        },
+        {
+          "id": "5.3",
+          "name": "Disable Dormant Accounts",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O bloqueio e desativação de contas inativas (ex: sem login há 45 dias) são aplicados a todos os diretórios corporativos, incluindo o ambiente local, tenants de Cloud e contas de terceiros (VPN/Fornecedores)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A desativação de uma conta dormente requer que um analista corra um script manual após notificação, ou é um processo orquestrado e automatizado (através de soluções IAM/IGA ou scripts PowerShell/Python agendados diariamente) que suspende a conta de forma imediata assim que atinge o limite?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de gestão do ciclo de vida das contas encontra-se suportado por um POP (Procedimento Operacional Padrão), com relatórios mensais para a gestão detalhando a percentagem de contas bloqueadas por inatividade face ao total de contas ativas?"
+          }
+        },
+        {
+          "id": "5.4",
+          "name": "Restrict Administrator Privileges to Dedicated Administrator Accounts",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A separação rígida entre a conta de navegação/produtividade diária e a conta dedicada exclusivamente a tarefas administrativas (ex: contas 'admin_nome') cobre 100% dos administradores de sistemas, redes, bases de dados e cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "A atribuição deste privilégio duplo é gerida manualmente de modo ad hoc, ou o acesso com privilégios administrativos requer a utilização contínua de um cofre de passwords/PAM (ex: CyberArk, BeyondTrust, Thycotic) ou mecanismos centralizados de Just-In-Time (JIT) access?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma norma de segurança proibindo explicitamente o uso de contas privilegiadas para leitura de emails ou navegação na Internet, suportada por métricas geradas a partir do SIEM (ex: Splunk/Sentinel) que detetem e reportem à segurança desvios de conduta?"
+          }
+        },
+        {
+          "id": "5.5",
+          "name": "Establish and Maintain an Inventory of Service Accounts",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário específico para contas de serviço, aplicacionais e de máquina (incluindo o owner da conta, data de revisão e propósito) abrange 100% dos ambientes operacionais, bases de dados e integrações API da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O levantamento e a gestão destas contas dependem de folhas de cálculo desatualizadas mantidas pelas equipas de TI, ou baseiam-se em soluções automatizadas de governação de identidades (IGA) e plataformas PAM que detetam continuamente novas contas de serviço na rede?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A governação das contas de serviço inclui um fluxo documentado de recertificação trimestral pelos respetivos donos de negócio, produzindo métricas executivas sobre o número de contas de serviço sem dono válido (órfãs) ou com privilégios excessivos?"
+          }
+        },
+        {
+          "id": "5.6",
+          "name": "Centralize Account Management",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A centralização da gestão de identidades e acessos através de um serviço de diretório ou Identity Provider (IdP) engloba 100% dos ativos de TI, sistemas operativos, aplicações SaaS e acessos à rede da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O provisionamento e a revogação de acessos exigem intervenção manual sistema a sistema, ou são orquestrados de forma contínua por ferramentas de diretório unificado e Single Sign-On (SSO) (ex: Microsoft Active Directory, Okta, Ping Identity) em toda a infraestrutura?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura de gestão centralizada está documentada como padrão tecnológico mandatório na organização, gerando indicadores gerenciais regulares (KPIs) sobre a percentagem de aplicações legadas que mantêm silos de autenticação independente e o respetivo risco de negócio?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Access Control Management",
+      "safeguards": [
+        {
+          "id": "6.1",
+          "name": "Establish an Access Granting Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de concessão de acessos a novos colaboradores ou mudanças de função abrange 100% dos sistemas (on-premise, cloud, aplicações SaaS) e infraestrutura física da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A criação de contas e atribuição de permissões é feita manualmente pela equipa de helpdesk com base em tickets, ou é orquestrada de forma automatizada por ferramentas de IAM/IGA (ex: SailPoint, Microsoft Entra ID Governance) integradas diretamente com o sistema de Recursos Humanos (ex: SAP, Workday)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um procedimento formal de aprovação de acessos documentado (com fluxo de manager e data owner), que gera relatórios com métricas mensais para a gestão sobre o SLA de provisionamento e eventuais quebras no processo de aprovação?"
+          }
+        },
+        {
+          "id": "6.2",
+          "name": "Establish an Access Revoking Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de revogação de acessos garante a inativação em 100% das plataformas (incluindo VPN, email, sistemas ERP e acessos a edifícios) em todos os casos de saída ou transferência de colaboradores?",
+            "q2_label": "Execução e Automação",
+            "q2": "A remoção de acessos depende de ações pontuais dos administradores em cada sistema, ou ocorre de forma automatizada e imediata (Zero Trust) via scripts ou ferramentas de gestão de ciclo de vida de identidades (ex: Okta Lifecycle Management) assim que o RH sinaliza o desligamento?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo está definido num POP (Procedimento Operacional Padrão) com SLAs rígidos documentados (ex: revogação em menos de 24h), gerando KPIs de risco sobre a taxa de sucesso da revogação atempada face aos desligamentos reais?"
+          }
+        },
+        {
+          "id": "6.3",
+          "name": "Require MFA for Externally-Exposed Applications",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A autenticação multifator (MFA) é obrigatória e está implementada em 100% das aplicações empresariais e plataformas expostas à Internet (ex: webmail, portais de clientes, ERP/CRM externos)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A aplicação do MFA depende de configurações isoladas e geridas individualmente em cada aplicação, ou está centralizada e forçada ativamente via Identity Providers corporativos (ex: Ping Identity, Duo Security, Azure AD Conditional Access) utilizando métodos fortes (ex: FIDO2, Microsoft Authenticator)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há documentação técnica de arquitetura que exija MFA como requisito obrigatório para todos os novos serviços expostos, acompanhada de métricas contínuas extraídas do SIEM (ex: Splunk) sobre falhas de autenticação e tentativas de bypass?"
+          }
+        },
+        {
+          "id": "6.4",
+          "name": "Require MFA for Remote Network Access",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A exigência de autenticação multifator (MFA) cobre de forma absoluta 100% dos acessos remotos à rede interna, incluindo VPNs client-to-site, ambientes VDI (Citrix/VMware) e sessões remotas externas?",
+            "q2_label": "Execução e Automação",
+            "q2": "A configuração do MFA na VPN depende de ativação manual ou é deixada à escolha do utilizador, ou está integrada e orquestrada diretamente nos gateways de rede (ex: Cisco AnyConnect com Duo, Palo Alto GlobalProtect) recusando e bloqueando qualquer ligação sem um token válido?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal aprovada pela gestão para acesso remoto seguro, suportada por dashboards de auditoria que detalham incidentes, tais como acessos remotos bloqueados devido a recusa de notificação push pelo utilizador ou anomalias geográficas?"
+          }
+        },
+        {
+          "id": "6.5",
+          "name": "Require MFA for Administrative Access",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O uso de MFA é imperativo para 100% das sessões de acesso administrativo (privilegiado) a servidores, equipamentos de core network, bases de dados e consolas de gestão em Cloud (ex: AWS Console, Azure Portal, vCenter)?",
+            "q2_label": "Execução e Automação",
+            "q2": "Os administradores introduzem o MFA de forma avulsa nos sistemas de destino, ou a autenticação forte é intercetada, validada e gerida continuamente através de soluções de PAM (Privileged Access Management, ex: CyberArk, BeyondTrust) e Bastion Hosts / Jump Servers automatizados?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Os requisitos rigorosos para os acessos privilegiados encontram-se definidos numa política específica, existindo auditorias regulares que produzem relatórios executivos sobre tentativas de login administrativo sem MFA e os respetivos alertas de segurança despoletados?"
+          }
+        },
+        {
+          "id": "6.6",
+          "name": "Establish and Maintain an Inventory of Authentication and Authorization Systems",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A organização possui um inventário centralizado e global que mapeia 100% dos seus sistemas de autenticação e autorização (ex: Active Directory, servidores RADIUS, instâncias TACACS+, IdPs)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A listagem é mantida de forma estática e manual em folhas de cálculo, ou é gerida através de plataformas de arquitetura e monitorização contínua (ITAM, scanners de rede) que detetam automaticamente novos serviços de diretório ou de autenticação a operar no ambiente?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de gestão da arquitetura exige revisões semestrais documentadas a este inventário, gerando indicadores para a direção sobre sistemas de autenticação legados ou não homologados (Shadow IT) que necessitem de desmantelamento?"
+          }
+        },
+        {
+          "id": "6.7",
+          "name": "Centralize Access Control",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A centralização do controlo de acessos (através de protocolos como SAML/OIDC) engloba 100% das aplicações internas e externas, sistemas operativos e serviços corporativos, erradicando a criação de bases de utilizadores isoladas (silos locais)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A integração de novos sistemas no diretório central é feita de modo ad hoc, ou é orquestrada continuamente via plataformas empresariais de Single Sign-On (SSO) (ex: Okta, Microsoft Entra ID) através de fluxos de provisionamento automatizados (ex: SCIM)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma diretriz arquitetural estrita que obrigue todas as novas aquisições de software a integrarem-se com o SSO, suportada por relatórios de risco que informam o nível executivo sobre a percentagem de aplicações críticas que ainda operam de forma descentralizada?"
+          }
+        },
+        {
+          "id": "6.8",
+          "name": "Define and Maintain Role-Based Access Control",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O modelo de Controlo de Acessos Baseado em Funções (RBAC) está desenhado e implementado transversalmente para 100% dos perfis de negócio e acessos aos sistemas core da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "No dia a dia, as permissões são atribuídas manualmente copiando o perfil de outro colaborador (clonagem), ou são automatizadas e provisionadas através de catálogos empresariais baseados em regras dinâmicas em ferramentas de IGA (ex: One Identity, SailPoint) alinhadas com o cargo estipulado nos RH?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A matriz de perfis de acesso (RBAC) está formalmente documentada num normativo, sofrendo recertificações periódicas pelos responsáveis de negócio e gerando KPIs (ex: redução do excesso de privilégios e eficiência na integração de novas contratações)?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Continuous Vulnerability Management",
+      "safeguards": [
+        {
+          "id": "7.1",
+          "name": "Establish and Maintain a Vulnerability Management Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de gestão contínua de vulnerabilidades cobre 100% da infraestrutura tecnológica, incluindo servidores on-premise, endpoints de utilizadores, equipamentos de rede e instâncias em cloud pública (ex: AWS, Azure)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A identificação de vulnerabilidades é baseada em verificações manuais e pontuais, ou está suportada por plataformas empresariais e automatizadas de Gestão de Vulnerabilidades (ex: Tenable.io, Qualys VMDR, Rapid7 InsightVM) ativas em toda a rede?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal e atualizada de gestão de vulnerabilidades que defina SLAs de mitigação baseados na criticidade (ex: pontuação CVSS), originando indicadores-chave de risco (KPIs) regulares apresentados à administração?"
+          }
+        },
+        {
+          "id": "7.2",
+          "name": "Establish and Maintain a Remediation Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de remediação orientada ao risco é aplicado transversalmente a 100% das falhas detetadas na organização, não deixando de fora sistemas legados, infraestrutura de filiais ou serviços críticos de negócio?",
+            "q2_label": "Execução e Automação",
+            "q2": "A priorização da correção de falhas depende de análise manual cruzada em folhas de cálculo, ou utiliza motores automatizados de priorização (ex: Kenna Security, RiskSense, Tenable VPR) que correlacionam vulnerabilidades com Threat Intelligence em tempo real?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um normativo documentando o processo formal de aceitação de risco (risk acceptance) com assinaturas de responsáveis de negócio, gerando métricas mensais sobre o volume de vulnerabilidades críticas assumidas face às corrigidas?"
+          }
+        },
+        {
+          "id": "7.3",
+          "name": "Perform Automated Operating System Patch Management",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A gestão, distribuição e instalação de patches e atualizações de sistemas operativos (Windows, distribuições Linux, macOS) cobre efetivamente 100% dos servidores e estações de trabalho do ambiente corporativo?",
+            "q2_label": "Execução e Automação",
+            "q2": "A aplicação de patches é desencadeada por scripts manuais executados por administradores, ou está totalmente orquestrada e agendada através de ferramentas centralizadas de Patch Management (ex: Microsoft SCCM/MECM, WSUS, Ivanti, Automox, Red Hat Satellite)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A organização possui uma rotina documentada e aprovada para a fase de testes e homologação de patches antes do roll-out para produção, com dashboards gerenciais que demonstrem a percentagem de conformidade de patching a nível global?"
+          }
+        },
+        {
+          "id": "7.4",
+          "name": "Perform Automated Application Patch Management",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A atualização de aplicações de terceiros (Third-Party Patching, como navegadores web, Java, Adobe, software de produtividade) é garantida e mantida de forma atualizada em 100% dos terminais e servidores da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A atualização destas aplicações depende da intervenção direta do utilizador ou do helpdesk local, ou é imposta de forma silenciosa, contínua e automatizada por plataformas de gestão de endpoints (ex: Patch My PC, ManageEngine Patch Manager Plus, Jamf Pro)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem relatórios formais, gerados pelo menos mensalmente para a direção de TI, que evidenciem o risco aplicacional, detalhando métricas de sucesso das atualizações e a contabilização de endpoints a correr software vulnerável?"
+          }
+        },
+        {
+          "id": "7.5",
+          "name": "Perform Automated Vulnerability Scans of Internal Enterprise Assets",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As varreduras (scans) automatizadas de vulnerabilidade a nível interno cobrem de forma integral 100% dos ativos ativos, abrangendo todas as VLANs, datacenters e redes de escritórios remotos?",
+            "q2_label": "Execução e Automação",
+            "q2": "Os scans são disparados manualmente e de forma ad hoc, ou estão automatizados para ocorrer no mínimo mensalmente com recurso a credenciais (scans autenticados) e agentes instalados nos equipamentos (ex: Qualys Cloud Agent, Nessus Agent)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um procedimento estruturado (POP) para investigar ativos que falham a autenticação durante os scans (credential failures), gerando métricas de visibilidade para a gestão sobre a verdadeira percentagem da rede que está a ser coberta de forma fidedigna?"
+          }
+        },
+        {
+          "id": "7.6",
+          "name": "Perform Automated Vulnerability Scans of Externally-Exposed Enterprise Assets",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A execução de scans a ativos expostos externamente engloba ativamente 100% do perímetro da organização, incluindo IPs públicos associados a VPNs, portais web corporativos, APIs expostas e serviços na DMZ?",
+            "q2_label": "Execução e Automação",
+            "q2": "A análise do perímetro externo baseia-se em verificações pontuais, ou está operacionalizada de modo contínuo e automatizado através de scanners dinâmicos e soluções de External Attack Surface Management (EASM) (ex: Tenable.asm, Detectify, Qualys WAS)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Os resultados dos scans externos alimentam automaticamente um processo formal de gestão de incidentes, produzindo KPIs executivos sobre o tempo médio de deteção (MTTD) e tempo médio de resolução (MTTR) de falhas de segurança expostas à Internet?"
+          }
+        },
+        {
+          "id": "7.7",
+          "name": "Remediate Detected Vulnerabilities",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A mitigação e correção efetiva das vulnerabilidades previamente detetadas abrange ativamente 100% do parque informático, aplicando controlos técnicos uniformes em todos os ambientes e plataformas reportadas pelos scanners?",
+            "q2_label": "Execução e Automação",
+            "q2": "A revalidação do fecho de vulnerabilidades exige esforço manual da equipa de segurança após comunicação da equipa de TI, ou é rastreada e confirmada de forma automatizada pelo próprio scanner de VM e através de integrações via API com a plataforma de ITSM (ex: ServiceNow, Jira)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O fluxo de remediação segue uma política de prazos de resolução rigorosa (ex: 14 dias para Críticas, 30 dias para Altas), suportada por painéis de controlo de gestão que reportam proativamente as quebras de SLA e o acumular de dívida técnica de segurança?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Audit Log Management",
+      "safeguards": [
+        {
+          "id": "8.1",
+          "name": "Establish and Maintain an Audit Log Management Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo documentado de gestão de logs abrange 100% dos sistemas críticos da organização, englobando infraestrutura on-premise, ativos de rede, firewalls e plataformas cloud (ex: AWS, Azure)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A configuração de recolha e envio de logs é ativada manualmente a cada novo sistema implementado, ou está integrada e orquestrada de forma contínua através de scripts de provisionamento e automação (ex: Ansible, Terraform)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal que defina os requisitos mínimos de logging por tipo de ativo, sendo revista anualmente e gerando métricas executivas sobre o nível de conformidade de logging em todo o ambiente?"
+          }
+        },
+        {
+          "id": "8.2",
+          "name": "Collect Audit Logs",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de logs de auditoria está efetivamente ativada em 100% dos ativos empresariais com capacidade de gerar registos, sem deixar de fora filiais ou equipamentos remotos de utilizadores?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ingestão de logs depende de exportações manuais ou pontuais, ou é assegurada continuamente através de protocolos automatizados (ex: Syslog, Windows Event Forwarding - WEF) ou agentes de logging instalados de raiz?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo garante que as quebras na recolha de logs geram alertas imediatos e documentados, existindo indicadores (KPIs) reportados à gestão sobre ativos críticos que deixaram temporariamente de enviar eventos?"
+          }
+        },
+        {
+          "id": "8.3",
+          "name": "Ensure Adequate Audit Log Storage",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A infraestrutura de armazenamento (storage) dimensionada para logs cobre a totalidade do volume gerado por 100% dos sistemas corporativos, garantindo que não há sobreposição ou perda de dados antigos por falta de espaço?",
+            "q2_label": "Execução e Automação",
+            "q2": "O redimensionamento do espaço e o arquivo (archiving) requerem verificações manuais, ou são geridos através de rotinas automatizadas de retenção e transição de dados (ex: políticas no Splunk, index lifecycle management no ELK, Amazon S3 Glacier)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um documento de arquitetura que estipule o dimensionamento de armazenamento de logs, produzindo relatórios de gestão mensais sobre a previsão de esgotamento de capacidade e a volumetria diária (EPS/GB)?"
+          }
+        },
+        {
+          "id": "8.4",
+          "name": "Standardize Audit Log Event Generation",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A padronização dos eventos de log (ex: formatação correta de timestamps sincronizados via NTP, IP de origem, username) aplica-se a 100% dos sistemas operativos, bases de dados e aplicações in-house?",
+            "q2_label": "Execução e Automação",
+            "q2": "A estruturação dos campos é ad hoc ou depende dos developers, ou está orquestrada de forma contínua por parsers e coletores automatizados na entrada do repositório (ex: Logstash, Fluentd) que normalizam o formato (ex: JSON, CEF, LEEF)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O padrão corporativo para eventos de log está redigido num normativo de desenvolvimento e integração, gerando métricas regulares que reportam a quantidade de logs rejeitados ou corrompidos por não cumprirem o standard?"
+          }
+        },
+        {
+          "id": "8.5",
+          "name": "Collect Detailed Audit Logs",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de eventos detalhados e críticos (ex: logins falhados, elevação de privilégios, alterações de políticas) encontra-se ativada em 100% dos componentes de infraestrutura (como Domain Controllers) e serviços core?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ativação destes níveis de detalhe é configurada avulsamente em cada máquina, ou imposta de forma global e automatizada (ex: Advanced Audit Policy Configuration via GPO em Windows, regras de auditd centralizadas em Linux)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há um catálogo documentado que defina exatamente quais os Event IDs obrigatórios por classe de ativo, gerando métricas de visibilidade sobre incidentes históricos que não puderam ser investigados a fundo por falta de logs detalhados?"
+          }
+        },
+        {
+          "id": "8.6",
+          "name": "Collect DNS Query Audit Logs",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A captura e monitorização de registos de pedidos DNS abrange ativamente 100% das sub-redes corporativas, tráfego cloud e equipamentos de utilizadores em roaming (trabalho remoto)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha de queries DNS implica extrações manuais em servidores locais, ou os dados são ingeridos de forma contínua e automatizada em plataformas analíticas de segurança (ex: Cisco Umbrella, Infoblox, SIEM) para bloqueio de C2/Botnets?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura de monitorização inclui o requisito formal da captura integral de DNS, produzindo relatórios periódicos de risco à direção sobre domínios maliciosos identificados e bloqueados preventivamente por anomalia de DNS?"
+          }
+        },
+        {
+          "id": "8.7",
+          "name": "Collect URL Request Audit Logs",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O registo detalhado de pedidos web (URL requests) cobre a totalidade do tráfego web gerado por 100% dos utilizadores, servidores e aplicações, independentemente de estarem na sede ou ligados por VPN?",
+            "q2_label": "Execução e Automação",
+            "q2": "A auditoria das navegações é descentralizada e local, ou recolhida centralmente de forma orquestrada por soluções de Secure Web Gateway (SWG), web proxies (ex: Zscaler, Forcepoint) ou firewalls de nova geração (NGFW, ex: Palo Alto, Fortinet)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O fluxo de revisão do tráfego web obedece a um processo documentado na Política de Utilização Aceitável (AUP), gerando dashboards que evidenciam bloqueios contínuos de sites de phishing ou de reputação negativa?"
+          }
+        },
+        {
+          "id": "8.8",
+          "name": "Collect Command-Line Audit Logs",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O registo das execuções na linha de comandos (ex: PowerShell, Bash) e respetivos argumentos engloba ativamente 100% dos servidores, estações de trabalho de administração e ativos críticos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A captura e envio destas ações depende do histórico local inseguro das shells, ou está forçada de forma invisível e automatizada (ex: PowerShell Script Block Logging, Sysmon, ou telemetria de soluções EDR como CrowdStrike, SentinelOne) remetendo eventos para o SOC?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A obrigatoriedade de auditar comandos administrativos e scripts consta nos standards de segurança corporativos, produzindo relatórios baseados em métricas de risco, como o volume de scripts não assinados ou ofuscados intercetados no ambiente?"
+          }
+        },
+        {
+          "id": "8.9",
+          "name": "Centralize Audit Logs",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A plataforma de centralização de logs (ex: SIEM) abrange a recolha e armazenamento em 100% dos ativos de TI em scope, impedindo absolutamente que os registos de auditoria fiquem isolados nos sistemas locais onde foram gerados?",
+            "q2_label": "Execução e Automação",
+            "q2": "O processo de envio para o repositório central é feito em lotes manuais (batch), ou opera num pipeline orquestrado, contínuo e em tempo real (ex: Microsoft Sentinel, Splunk, IBM QRadar), garantindo inalterabilidade (funções WORM)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura centralizada é governada por uma política formal de agregação de segurança, apresentando indicadores gerenciais regulares (KPIs) com a percentagem de sistemas devidamente integrados no SIEM em relação ao inventário global?"
+          }
+        },
+        {
+          "id": "8.10",
+          "name": "Retain Audit Logs",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação de políticas de retenção estritas garante que os registos de auditoria de 100% dos sistemas corporativos são guardados por um período mínimo legal ou de negócio (ex: 90 dias em hot storage, 1 ano em cold storage)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A purga e eliminação dos logs no final do seu ciclo de vida depende do apagamento manual efetuado por administradores, ou é controlada rigorosamente de forma automática pelas políticas de dados das soluções de storage ou SIEM?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem normas formais e baseadas em requisitos regulatórios (ex: RGPD, PCI-DSS) que ditam os prazos de retenção, gerando métricas de compliance sobre o descarte seguro e atempado dos dados após a expiração do prazo?"
+          }
+        },
+        {
+          "id": "8.11",
+          "name": "Conduct Audit Log Reviews",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As rotinas de revisão de logs cobrem de forma efetiva e global 100% dos eventos categorizados como críticos (ex: logins falhados consecutivos, tentativas de bypass de firewalls, alterações a grupos de Domain Admins)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A revisão baseia-se na procura e leitura humana ad hoc de milhares de linhas, ou é contínua e alavancada por regras de deteção automatizadas (alerting), User and Entity Behavior Analytics (UEBA) e Machine Learning a partir do SOC/SIEM?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de triagem e investigação possui playbooks estruturados e documentados, entregando métricas executivas mensais aos responsáveis (ex: número de falsos positivos reportados, alertas confirmados e MTTD - Tempo Médio de Deteção)?"
+          }
+        },
+        {
+          "id": "8.12",
+          "name": "Collect Service Provider Logs",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de logs provenientes de fornecedores de serviços externos (MSPs, fornecedores de aplicações SaaS, portais de cloud pública) abrange 100% das integrações críticas de terceiros com a organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A obtenção dos registos de fornecedores é feita de forma reativa através de pedidos manuais em caso de incidente, ou está assegurada através de integrações contínuas via API diretamente para a infraestrutura de monitorização da organização?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Os contratos de prestação de serviços e SLAs definem de forma documentada a obrigação, frequência e formato da partilha destes logs, havendo métricas gerenciais sobre a taxa de sucesso ou quebra na entrega dos eventos por parte dos parceiros?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Email and Web Browser Protections",
+      "safeguards": [
+        {
+          "id": "9.1",
+          "name": "Ensure Use of Only Fully Supported Browsers and Email Clients",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A restrição para utilizar apenas web browsers (ex: Chrome, Edge) e clientes de email (ex: Outlook) oficialmente suportados e atualizados cobre 100% dos computadores e dispositivos móveis da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A garantia de que versões obsoletas não correm no ambiente depende da ação manual dos utilizadores, ou é imposta de forma automatizada e contínua através de plataformas de UEM (ex: Microsoft Intune, Workspace ONE) ou GPOs que bloqueiam ativamente versões não homologadas?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política documentada sobre o ciclo de vida do software cliente, com métricas regulares apresentadas à gestão de TI reportando a percentagem de equipamentos a executar browsers ou clientes de email em fim de vida (End of Life)?"
+          }
+        },
+        {
+          "id": "9.2",
+          "name": "Use a DNS Filtering Service",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O serviço de filtragem de DNS para bloquear o acesso a domínios maliciosos está ativo para 100% dos dispositivos corporativos, operando quer estejam na rede LAN interna, quer em acessos remotos na Internet (roaming)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A configuração destes servidores DNS seguros depende de ajustes manuais nas placas de rede, ou os pedidos são automaticamente reencaminhados e analisados em tempo real por uma solução corporativa de DNS Security (ex: Cisco Umbrella, Cloudflare Gateway, Infoblox)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de segurança e acessos à Internet exige formalmente esta proteção, gerando relatórios de risco mensais com indicadores sobre o volume de pedidos bloqueados (ex: botnets, sites de phishing) face ao tráfego DNS total?"
+          }
+        },
+        {
+          "id": "9.3",
+          "name": "Maintain and Enforce Network-Based URL Filters",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A filtragem de URLs baseada em rede, limitando o acesso a sites de risco ou não aprovados para uso corporativo, abrange 100% dos fluxos de navegação gerados por todos os utilizadores e servidores?",
+            "q2_label": "Execução e Automação",
+            "q2": "O bloqueio e a atualização das categorias de sites dependem de listas estáticas mantidas manualmente, ou são executados de forma automatizada e dinâmica por soluções Secure Web Gateway (SWG) ou Next-Generation Firewalls (ex: Zscaler, Palo Alto Networks, Fortinet)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "As regras de filtragem aplicadas baseiam-se numa Política de Utilização Aceitável (AUP) formalmente aprovada, produzindo dashboards executivos que quantificam as violações de navegação e as categorias mais frequentemente bloqueadas?"
+          }
+        },
+        {
+          "id": "9.4",
+          "name": "Restrict Unnecessary or Unauthorized Browser and Email Client Extensions",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A proibição técnica de instalação de extensões, add-ons ou plug-ins não homologados (tanto nos navegadores web como nos clientes de email) é aplicada com sucesso a 100% dos equipamentos da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A restrição confia em simples diretrizes escritas enviadas aos utilizadores, ou é rigorosamente imposta por mecanismos centralizados e automatizados em regime de default-deny (ex: Google Workspace Chrome Management, GPO para MS Edge, bloqueio de Add-ins no Microsoft 365)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de requisição e homologação de novas extensões pelos utilizadores segue um workflow documentado na equipa de segurança, gerando métricas periódicas reportadas à direção sobre o volume de extensões rejeitadas ou em uso?"
+          }
+        },
+        {
+          "id": "9.5",
+          "name": "Implement DMARC",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A implementação do protocolo DMARC (suportado por configurações robustas de SPF e DKIM) cobre ativamente 100% dos domínios registados e utilizados pela organização para enviar correio eletrónico?",
+            "q2_label": "Execução e Automação",
+            "q2": "A análise dos falhanços de DMARC para afinação de políticas é feita analisando ficheiros XML brutos pontualmente, ou a organização tira partido de plataformas automatizadas (ex: Proofpoint Email Fraud Defense, DMARCian, Valimail) operando continuamente num modo de imposição estrita (p=reject)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um normativo de arquitetura que exija que todo e qualquer novo domínio nasça com estas configurações ativas, acompanhado de relatórios gerenciais sobre a percentagem de emails fraudulentos de terceiros rejeitados com sucesso por tentarem fazer spoofing da marca?"
+          }
+        },
+        {
+          "id": "9.6",
+          "name": "Block Unnecessary File Types",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O bloqueio técnico automático de anexos e ficheiros de alto risco (ex: .exe, .vbs, .ps1, .bat) através do correio eletrónico e downloads web abrange 100% das caixas de email e tráfego proxy da empresa?",
+            "q2_label": "Execução e Automação",
+            "q2": "A inspeção do tipo de ficheiro baseia-se unicamente na extensão visível no nome do ficheiro, ou é garantida através de inspeção profunda e automatizada do cabeçalho (True File Type analysis) por Secure Email Gateways (ex: Mimecast, Trellix, Defender for Office 365)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A organização mantém uma lista formal documentada com as extensões aprovadas e proibidas (com critérios de exceção definidos), existindo indicadores periódicos do SOC sobre os vetores de entrega de executáveis maliciosos mais bloqueados na fronteira da rede?"
+          }
+        },
+        {
+          "id": "9.7",
+          "name": "Deploy and Maintain Anti-Malware Protections",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A proteção anti-malware avançada (não apenas baseada em assinaturas) cobre de forma integral 100% das portas de entrada de email e web gateways corporativos da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A interceção de ameaças zero-day depende da atualização manual do administrador, ou assenta em mecanismos contínuos, automatizados e em tempo real de sandboxing na nuvem e Machine Learning (ex: Check Point SandBlast, Palo Alto WildFire, FortiSandbox) para detonar ficheiros suspeitos?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A gestão de incidentes resultantes de alertas destas soluções obedece a Playbooks documentados do SOC, fornecendo relatórios mensais à direção com métricas como o dwell time, a eficácia de bloqueio preventivo e a evolução das ciberameaças enfrentadas?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Malware Defenses",
+      "safeguards": [
+        {
+          "id": "10.1",
+          "name": "Deploy and Maintain Anti-Malware Software",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A solução de anti-malware está implementada e ativa em 100% dos ativos empresariais, incluindo estações de trabalho, servidores e dispositivos móveis corporativos, sem exceções?",
+            "q2_label": "Execução e Automação",
+            "q2": "A instalação e ativação da proteção anti-malware são processos automatizados orquestrados por ferramentas de gestão de endpoints (ex: Intune, SCCM) ou dependem de instalações manuais e verificações ad hoc?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal documentada que obrigue à utilização de anti-malware, com relatórios mensais gerados pela gestão que confirmam a taxa de cobertura de proteção em relação ao inventário global de ativos?"
+          }
+        },
+        {
+          "id": "10.2",
+          "name": "Configure Automatic Anti-Malware Signature Updates",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A configuração de atualizações automáticas de assinaturas de anti-malware está a funcionar em 100% dos ativos da organização, garantindo proteção contra ameaças conhecidas?",
+            "q2_label": "Execução e Automação",
+            "q2": "As atualizações são forçadas pelo sistema de gestão centralizado (ex: consola do CrowdStrike, Defender for Endpoint) de forma contínua, ou dependem de verificações manuais e disparos pontuais pelos administradores?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo está definido num normativo operacional, existindo indicadores executivos que reportem proativamente quais os ativos que não conseguem obter atualizações (out-of-date) há mais de 24 horas?"
+          }
+        },
+        {
+          "id": "10.3",
+          "name": "Disable Autorun and Autoplay for Removable Media",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A desativação das funcionalidades de 'Autorun' e 'Autoplay' em suportes amovíveis (ex: Pens USB) encontra-se aplicada e ativa em 100% das estações de trabalho e servidores da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A desativação é feita via GPO (Group Policy Object) de forma orquestrada a nível de domínio, ou exige configurações manuais individuais em cada máquina por parte dos técnicos?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma norma de segurança proibindo explicitamente o Autorun, com auditorias automatizadas mensais que verifiquem se a configuração permanece aplicada nos terminais?"
+          }
+        },
+        {
+          "id": "10.4",
+          "name": "Configure Automatic Anti-Malware Scanning of Removable Media",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A configuração para scan automático de suportes amovíveis (ex: Pens USB) está ativa em 100% dos terminais, garantindo que qualquer ficheiro introduzido é inspecionado antes da execução?",
+            "q2_label": "Execução e Automação",
+            "q2": "O scan automático é gerido pela política centralizada do software anti-malware (ex: Trend Micro, ESET, Sophos) de forma contínua e transparente, ou depende da ação deliberada do utilizador final para iniciar uma verificação?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O procedimento de segurança documental prevê a obrigatoriedade deste scan, existindo métricas geradas pela ferramenta de anti-malware sobre o volume de malware detetado e bloqueado em dispositivos externos?"
+          }
+        },
+        {
+          "id": "10.5",
+          "name": "Enable Anti-Exploitation Features",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As funcionalidades de anti-exploração (ex: DEP, WDEG, SIP, Gatekeeper) estão ativadas e configuradas em 100% dos ativos e sistemas operativos suportados pela organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ativação destas defesas técnicas é efetuada via GPO/Configuration Profiles de forma automatizada e centralizada, ou depende de configurações manuais isoladas e propenso a falhas humanas?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A estratégia de hardening está documentada em normativos técnicos, existindo relatórios periódicos de conformidade que confirmam a aplicação destas proteções em servidores e endpoints críticos?"
+          }
+        },
+        {
+          "id": "10.6",
+          "name": "Centrally Manage Anti-Malware Software",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A gestão centralizada do software anti-malware abrange 100% dos endpoints e servidores da organização, garantindo uma única fonte de verdade e controlo para a equipa de segurança?",
+            "q2_label": "Execução e Automação",
+            "q2": "A visibilidade e o controlo são garantidos através de uma consola de gestão centralizada e automatizada (ex: Microsoft Defender, SentinelOne, Trellix ePO) ou a gestão é descentralizada em diferentes consolas ou configurações locais?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um processo documentado de resposta a incidentes que utilize a consola central para remediação, gerando relatórios de risco executivos sobre o estado de saúde global da segurança da empresa?"
+          }
+        },
+        {
+          "id": "10.7",
+          "name": "Use Behavior-Based Anti-Malware Software",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A utilização de tecnologias de anti-malware baseadas em comportamento (EDR/XDR) cobre 100% do parque informático, para além das tradicionais assinaturas estáticas?",
+            "q2_label": "Execução e Automação",
+            "q2": "A deteção comportamental é uma funcionalidade ativa e orquestrada de forma contínua pelo EDR (ex: CrowdStrike, SentinelOne) ou a proteção baseia-se apenas no bloqueio por assinatura conhecido, exigindo intervenção manual para análise de novas ameaças?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O SOC utiliza Playbooks documentados para investigar alertas de comportamento anómalo detetados pela ferramenta, produzindo KPIs de eficácia que demonstram o tempo médio de resposta a novas ameaças (MTTR)?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Data Recovery",
+      "safeguards": [
+        {
+          "id": "11.1",
+          "name": "Establish and Maintain a Data Recovery Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo formal de recuperação de dados engloba 100% dos ativos críticos, cobrindo infraestrutura on-premise, instâncias cloud (ex: AWS EC2, Azure VMs) e repositórios SaaS (ex: Microsoft 365, Google Workspace)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão deste processo depende de verificações manuais e conhecimento tácito da equipa, ou assenta em plataformas automatizadas de orquestração de disaster recovery (ex: VMware Site Recovery Manager, Zerto) que mantêm o plano de continuidade sempre sincronizado?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política corporativa que defina formalmente os RPOs (Recovery Point Objective) e RTOs (Recovery Time Objective), gerando métricas mensais para a administração sobre a capacidade real da TI em cumprir esses tempos acordados?"
+          }
+        },
+        {
+          "id": "11.2",
+          "name": "Perform Automated Backups",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A execução de cópias de segurança (backups) está garantida para 100% dos servidores, bases de dados de produção e file servers críticos da organização, sem deixar zonas ou dados órfãos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O disparo dos backups exige a intervenção pontual do administrador (ad hoc), ou é orquestrado de forma totalmente automatizada e contínua por ferramentas empresariais (ex: Veeam Backup & Replication, Commvault, Rubrik) com agendamentos estritos?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há um procedimento documentado que defina a rotina de monitorização destas tarefas, existindo indicadores de gestão (KPIs) diários ou semanais que evidenciem ao negócio a taxa de sucesso versus a taxa de falha dos jobs de backup?"
+          }
+        },
+        {
+          "id": "11.3",
+          "name": "Protect Recovery Data",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação de controlos de segurança rigorosos (como criptografia e segregação de acessos) protege 100% dos repositórios onde os backups estão armazenados, independentemente de estarem em discos locais, NAS ou storage na cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "A segurança dos backups baseia-se em simples permissões NTFS manuais, ou é imposta de modo contínuo e automatizado (ex: cifra AES-256 forçada pelo software de backup e autenticação multifator rigorosa exigida no acesso à consola de gestão)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma norma de segurança que detalhe como os dados de recuperação devem ser protegidos contra adulteração ou exfiltração, originando relatórios periódicos de auditoria aos acessos administrativos feitos aos cofres de backup?"
+          }
+        },
+        {
+          "id": "11.4",
+          "name": "Establish and Maintain an Isolated Instance of Recovery Data",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A organização mantém uma cópia de segurança isolada (offline, off-site ou cloud air-gapped) correspondente a 100% dos dados essenciais para garantir a sobrevivência e recuperação do negócio num cenário de ransomware total?",
+            "q2_label": "Execução e Automação",
+            "q2": "A criação desta instância isolada depende da troca manual de fitas magnéticas (tapes) por um operador, ou é assegurada através de mecanismos automatizados de imutabilidade (ex: Amazon S3 Object Lock, Veeam Hardened Repositories) que impedem a eliminação ou encriptação dos dados?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A estratégia de isolamento de backups encontra-se formalmente desenhada no Plano de Recuperação de Desastres (DRP), gerando KPIs regulares para a gestão de topo sobre o estado de conformidade imutável e a frescura dos dados isolados?"
+          }
+        },
+        {
+          "id": "11.5",
+          "name": "Test Data Recovery",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "Os testes periódicos de restauro de dados abrangem uma amostra representativa de 100% dos sistemas core da empresa (servidores físicos, máquinas virtuais, bases de dados complexas), testando tanto cenários de perda parcial como total?",
+            "q2_label": "Execução e Automação",
+            "q2": "O processo de teste exige a alocação morosa e manual de hardware, ou tira partido de funcionalidades automatizadas de verificação e sandboxing (ex: Veeam SureBackup, Datto Screenshot Verification) que atestam a integridade e arranque dos dados de forma silenciosa?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Cada exercício de restauro dá origem a um relatório formal submetido à direção, contendo métricas objetivas sobre os tempos de recuperação reais obtidos (face aos RTOs estipulados) e um plano documentado de lições aprendidas?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Network Infrastructure Management",
+      "safeguards": [
+        {
+          "id": "12.1",
+          "name": "Ensure Network Infrastructure is Up-to-Date",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A garantia de infraestrutura de rede atualizada (firmwares, patches, NaaS) cobre 100% dos ativos corporativos de rede (switches, routers, firewalls, load balancers)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A verificação e instalação das versões mais recentes são feitas manualmente pelos administradores ou a organização recorre a ferramentas automatizadas de gestão de configurações de rede (ex: SolarWinds NCM, Cisco DNA Center)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal exigindo a verificação mensal de suporte e atualização das versões de software, com métricas reportadas sobre equipamentos de rede em fim de vida (End of Life / End of Support)?"
+          }
+        },
+        {
+          "id": "12.2",
+          "name": "Establish and Maintain a Secure Network Architecture",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A arquitetura de rede segura (contemplando segmentação, menor privilégio e alta disponibilidade) está implementada em 100% dos ambientes corporativos, sedes, filiais e conexões à Cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "O isolamento entre segmentos críticos depende apenas de VLANs e regras estáticas configuradas manualmente, ou é garantido através de plataformas orquestradas de microsegmentação e Zero Trust (ex: VMware NSX, Cisco ACI, Illumio)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O modelo de arquitetura de segurança encontra-se formalmente documentado e aprovado, gerando relatórios com KPIs sobre infrações de comunicação não autorizada entre segmentos de rede?"
+          }
+        },
+        {
+          "id": "12.3",
+          "name": "Securely Manage Network Infrastructure",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A gestão segura da infraestrutura (ex: proibir protocolos inseguros, utilizar gestão centralizada) aplica-se a 100% dos switches, firewalls e gateways sob a responsabilidade da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão de configurações de rede é feita através de scripts avulsos no CLI ou a empresa adota automação contínua utilizando versionamento (Infrastructure-as-Code via Terraform, Ansible ou repositórios Git)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há processos documentados para o controlo de alterações nas regras e configurações, produzindo métricas executivas que reportem desvios de baseline (configuration drift) nos ativos críticos?"
+          }
+        },
+        {
+          "id": "12.4",
+          "name": "Establish and Maintain Architecture Diagram(s)",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O mapeamento e a documentação topológica através de diagramas de arquitetura cobrem 100% das localizações físicas e virtuais (redes LAN, WAN, DMZ e Cloud)?",
+            "q2_label": "Execução e Automação",
+            "q2": "O desenho da rede é mantido manualmente em ficheiros estáticos (ex: Microsoft Visio) que rapidamente ficam obsoletos, ou é desenhado e atualizado dinamicamente por ferramentas de network discovery (ex: NetBrain, Auvik, SolarWinds)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma exigência procedimental de revisão anual dos diagramas (ou a cada grande alteração), gerando relatórios à direção sobre a discrepância entre a rede documentada e a rede real descoberta?"
+          }
+        },
+        {
+          "id": "12.5",
+          "name": "Centralize Network Authentication, Authorization, and Auditing (AAA)",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A centralização de autenticação, autorização e auditoria (AAA) abrange os acessos administrativos a 100% dos equipamentos de infraestrutura de rede da empresa?",
+            "q2_label": "Execução e Automação",
+            "q2": "Os logins nos switches e routers baseiam-se em contas locais geridas manualmente, ou a autenticação é totalmente orquestrada e forçada por soluções corporativas centralizadas (ex: Cisco ISE, ClearPass, servidores TACACS+/RADIUS)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura obriga formalmente à utilização de sistemas AAA, acompanhada de auditorias que produzem métricas sobre o número de acessos falhados ou elevações de privilégios indevidas na infraestrutura de rede?"
+          }
+        },
+        {
+          "id": "12.6",
+          "name": "Use of Secure Network Management and Communication Protocols",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A exigência de protocolos seguros (ex: SSH v2, HTTPS, SNMPv3, IPsec) abrange 100% do tráfego administrativo e de monitorização em todos os ativos de rede?",
+            "q2_label": "Execução e Automação",
+            "q2": "A validação do uso de protocolos seguros é deixada ao critério humano na hora do acesso, ou existem mecanismos e ferramentas de rede que forçam, bloqueiam ativamente (via NGFW) e alertam o SOC sobre qualquer tentativa de conexão via protocolos legados (Telnet, HTTP, SNMPv1)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de segurança de redes documenta a lista restrita de protocolos de gestão autorizados, e a equipa gera KPIs mensais relatando a deteção ou desmantelamento de sessões em clear-text?"
+          }
+        },
+        {
+          "id": "12.7",
+          "name": "Ensure Remote Devices Utilize a VPN and are Connecting to an Enterprise's AAA Infrastructure",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A exigência de utilização de VPN corporativa e integração com a infraestrutura AAA cobre 100% dos equipamentos remotos (endpoints de colaboradores, acessos de terceiros) que se liguem à rede interna?",
+            "q2_label": "Execução e Automação",
+            "q2": "A ligação remota requer que o utilizador inicie manualmente um cliente e utilize apenas credenciais estáticas, ou o acesso é forçado e validado continuamente (Posture Check e MFA via soluções como Palo Alto GlobalProtect, Cisco AnyConnect, Zscaler ZPA)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O acesso remoto está suportado por uma política de segurança formal, gerando dashboards gerenciais com indicadores como o volume de ligações rejeitadas por falha de postura de segurança ou anomalia de autenticação?"
+          }
+        },
+        {
+          "id": "12.8",
+          "name": "Establish and Maintain Dedicated Computing Resources for All Administrative Work",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A alocação de recursos dedicados (máquinas ou jump servers exclusivos) isolados da rede de navegação geral está em vigor para 100% dos acessos de administração e tarefas privilegiadas de TI?",
+            "q2_label": "Execução e Automação",
+            "q2": "O isolamento administrativo é baseado em simples avisos operacionais aos técnicos, ou é garantido através do encaminhamento orquestrado e forçado via Bastion Hosts, PAM (Privileged Access Management - CyberArk, BeyondTrust) e ambientes VDI sem acesso à Internet pública?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há normativos aprovados ditando o uso restrito destas estações administrativas, produzindo relatórios auditáveis sobre a sua conformidade técnica e métricas de incidentes envolvendo o comprometimento de acessos privilegiados?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Network Monitoring and Defense",
+      "safeguards": [
+        {
+          "id": "13.1",
+          "name": "Centralize Security Event Alerting",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A centralização de alertas de eventos de segurança abrange 100% dos ativos corporativos críticos, correlacionando dados de endpoints, redes e serviços cloud (ex: AWS, Microsoft 365)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A correlação de eventos baseia-se em verificações manuais de logs dispersos ou é suportada e orquestrada de forma contínua por plataformas avançadas de SIEM/Log Analytics (ex: Microsoft Sentinel, Splunk Enterprise Security, IBM QRadar) com alertas definidos pelos fabricantes?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um processo formal documentado para o tratamento de alertas (Playbooks), produzindo métricas executivas mensais para a direção sobre o volume de alertas críticos, falsos positivos e Tempo Médio de Resposta (MTTR)?"
+          }
+        },
+        {
+          "id": "13.2",
+          "name": "Deploy a Host-Based Intrusion Detection Solution",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A solução de deteção de intrusão baseada em host (HIDS) está implementada e ativa em 100% dos servidores e estações de trabalho críticas da organização, sejam físicos ou virtuais?",
+            "q2_label": "Execução e Automação",
+            "q2": "A deteção a nível do host atua de modo isolado necessitando de consultas locais ad hoc, ou comunica e alerta de forma contínua e integrada com um EDR/XDR corporativo (ex: Wazuh, OSSEC, CrowdStrike Falcon) enviando telemetria em tempo real para o SOC?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há uma política corporativa que exija a presença de agentes HIDS em qualquer novo ativo provisionado, suportada por relatórios de conformidade e métricas de deteção de comportamentos suspeitos reportados à gestão de risco?"
+          }
+        },
+        {
+          "id": "13.3",
+          "name": "Deploy a Network Intrusion Detection Solution",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O alcance da solução de deteção de intrusão de rede (NIDS) abrange 100% dos pontos de estrangulamento da rede, como a fronteira da Internet, ligações cloud e DMZs corporativas?",
+            "q2_label": "Execução e Automação",
+            "q2": "A monitorização do tráfego depende da recolha pontual de pacotes, ou a inspeção e emissão de alertas são contínuas e orquestradas por appliances/sensores NIDS avançados (ex: Zeek, Suricata, sensores Darktrace, ExtraHop) integrados à resposta de segurança?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe documentação detalhando o posicionamento dos sensores na arquitetura de segurança, gerando relatórios de risco ao nível executivo sobre as assinaturas de intrusão com maior incidência no tráfego da rede?"
+          }
+        },
+        {
+          "id": "13.4",
+          "name": "Perform Traffic Filtering Between Network Segments",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A filtragem rigorosa de tráfego (impedindo tráfego não autorizado) é aplicada entre 100% dos segmentos de rede críticos (ex: rede de utilizadores vs. datacenter, IoT vs. rede corporativa)?",
+            "q2_label": "Execução e Automação",
+            "q2": "O filtro depende de Access Control Lists (ACLs) rudimentares em switches legados, ou é assegurado e mantido por firewalls de segmentação e automação de microsegmentação contínua (ex: Fortinet NGFW, Palo Alto, VMware NSX)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "As regras de filtragem inter-VLAN obedecem a uma política documentada de menor privilégio, sendo alvo de auditorias que geram métricas de negócio baseadas em tentativas de comunicação ilícitas bloqueadas internamente?"
+          }
+        },
+        {
+          "id": "13.5",
+          "name": "Manage Access Control for Remote Assets",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O controlo de acesso focado na postura do dispositivo remoto aplica-se a 100% dos equipamentos (BYOD ou corporativos) que tentam estabelecer ligação à infraestrutura da organização via VPN ou acesso ZTNA?",
+            "q2_label": "Execução e Automação",
+            "q2": "A avaliação da conformidade (ex: antivírus atualizado, SO corrigido) depende da confiança no utilizador ou é rigorosamente automatizada por verificações de postura contínua via soluções de NAC ou gateways remotos (ex: Cisco ISE Posture, GlobalProtect HIP, Zscaler)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O procedimento técnico para acesso remoto possui regras de compliance documentadas, produzindo dashboards executivos que revelam o número de ligações remotas barradas por falha nos requisitos mínimos de segurança?"
+          }
+        },
+        {
+          "id": "13.6",
+          "name": "Collect Network Traffic Flow Logs",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A recolha de logs de fluxo de tráfego de rede abrange ativamente 100% dos switches core, routers de fronteira e ambientes cloud, eliminando pontos cegos de monitorização de rede?",
+            "q2_label": "Execução e Automação",
+            "q2": "A análise de fluxos implica extração manual e esporádica, ou é enviada em tempo real e de forma automatizada (ex: NetFlow, sFlow, IPFIX) para analisadores de tráfego (ex: SolarWinds NTA, Kentik, Plixer Scrutinizer) ou para o SIEM corporativo?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A arquitetura de rede obriga formalmente à configuração de exportação de fluxos em todos os equipamentos de core, gerando indicadores mensais sobre o volume de tráfego anómalo ou picos suspeitos reportados à direção?"
+          }
+        },
+        {
+          "id": "13.7",
+          "name": "Deploy a Host-Based Intrusion Prevention Solution",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O bloqueio e prevenção de intrusões ao nível do endpoint (HIPS/EDR preventivo) estão ativados com políticas de bloqueio (enforcement mode) em 100% das estações de trabalho e servidores suportados?",
+            "q2_label": "Execução e Automação",
+            "q2": "A mitigação de ameaças no host obriga a que um analista decida manualmente a ação, ou a solução (ex: Microsoft Defender for Endpoint em modo block, Trellix HIPS, SentinelOne) bloqueia e isola imediatamente o processo intrusivo de modo automatizado?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O SOC dispõe de playbooks formalizados e documentados para a gestão dos eventos bloqueados pelo HIPS, fornecendo KPIs executivos que refletem a percentagem de incidentes mitigados sem impacto para as operações de negócio?"
+          }
+        },
+        {
+          "id": "13.8",
+          "name": "Deploy a Network Intrusion Prevention Solution",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As soluções de prevenção de intrusões na rede (NIPS) estão instaladas e ativas bloqueando ameaças em 100% das ligações críticas entre a organização e a Internet ou redes parceiras de menor confiança?",
+            "q2_label": "Execução e Automação",
+            "q2": "A proteção contra ataques de rede assenta em verificações a posteriori, ou as ameaças são descartadas (dropped) de modo contínuo, em linha e de forma automatizada por appliances NIPS (ex: Trend Micro TippingPoint, Cisco Secure IPS, Check Point NGFW)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um procedimento formal de afinação (tuning) para as políticas do NIPS, gerando relatórios de gestão com métricas do volume de ataques externos travados antes de atingirem a rede interna?"
+          }
+        },
+        {
+          "id": "13.9",
+          "name": "Deploy Port-Level Access Control",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O controlo rigoroso de acesso ao nível da porta física ou lógica (NAC) abrange 100% das tomadas de rede dos escritórios, ligações Wi-Fi corporativas e portas de acesso em filiais?",
+            "q2_label": "Execução e Automação",
+            "q2": "O controlo de quem se liga à rede depende do bloqueio manual de portas nos switches (port security) ou está automatizado e orquestrado por protocolos AAA baseados em certificados (ex: 802.1X, Cisco ISE, Aruba ClearPass)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A norma corporativa exige explicitamente a autenticação de porta para qualquer ligação física à rede, fornecendo métricas periódicas que indicam a quantidade de dispositivos não geridos bloqueados por tentativa de acesso não autorizado?"
+          }
+        },
+        {
+          "id": "13.10",
+          "name": "Perform Application Layer Filtering",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A filtragem na camada aplicacional (layer 7) está ativada e cobre 100% das aplicações expostas da empresa (ex: portais web, APIs, gateways, serviços B2B)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A defesa das aplicações contra ataques (ex: injeções SQL, XSS) é feita com simples regras estáticas de proxy, ou assenta em políticas dinâmicas e automatizadas geridas por Web Application Firewalls corporativos (ex: Cloudflare WAF, F5 BIG-IP, AWS WAF)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A gestão destas regras está documentada num procedimento de ciclo de vida seguro, gerando indicadores-chave (KPIs) sobre a tipologia dos ataques da web (ex: OWASP Top 10) mitigados com sucesso pela proteção aplicacional?"
+          }
+        },
+        {
+          "id": "13.11",
+          "name": "Tune Security Event Alerting Thresholds",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A rotina de afinação e ajuste contínuo dos limiares de alerta de eventos de segurança aplica-se a 100% das ferramentas de deteção ativas no ambiente (SIEM, NIDS, EDR, WAF)?",
+            "q2_label": "Execução e Automação",
+            "q2": "O ajuste destes limiares (thresholds) ocorre pontualmente de modo ad hoc ou é um processo proativo, estruturado e apoiado em automação de relatórios para identificar mensalmente regras ruidosas (ex: Machine Learning/tuning no Splunk ou Microsoft Sentinel)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A rotina de afinação faz parte de um procedimento documentado do SOC, produzindo dashboards formais que reportam a diminuição gradual de falsos positivos (alert fatigue) e a otimização da eficácia operacional das equipas de resposta a incidentes?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Security Awareness and Skills Training",
+      "safeguards": [
+        {
+          "id": "14.1",
+          "name": "Establish and Maintain a Security Awareness Program",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O programa de consciencialização em segurança abrange 100% da força de trabalho da organização (incluindo administração, recém-contratados e prestadores de serviços externos com acesso aos sistemas)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A entrega dos conteúdos formativos é feita de modo ad hoc (ex: palestras anuais ou envio manual de PDFs), ou é gerida de forma contínua e automatizada através de plataformas dedicadas de Security Awareness (ex: KnowBe4, Proofpoint, Infosec IQ) integradas com o sistema de Recursos Humanos?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal que obrigue à revisão e atualização anual do programa de formação, gerando indicadores-chave (KPIs) sobre a taxa de conclusão dos cursos por departamento face ao calendário estabelecido?"
+          }
+        },
+        {
+          "id": "14.2",
+          "name": "Train Workforce Members to Recognize Social Engineering Attacks",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O treino prático e direcionado contra engenharia social (ex: phishing, vishing, smishing, spear-phishing) cobre ativamente 100% dos utilizadores com caixas de correio ou telefones corporativos?",
+            "q2_label": "Execução e Automação",
+            "q2": "O treino baseia-se exclusivamente em módulos teóricos estáticos, ou assenta em campanhas contínuas e automatizadas de simulação de phishing disparadas aleatoriamente para as caixas de email dos utilizadores (ex: Cofense PhishMe, GoPhish)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Os resultados das simulações alimentam dashboards de risco e processos documentados de reporte executivo, evidenciando métricas precisas como a taxa de cliques (Click Rate) e determinando ações de re-treino (re-training) para utilizadores reincidentes?"
+          }
+        },
+        {
+          "id": "14.3",
+          "name": "Train Workforce Members on Authentication Best Practices",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A formação focada em boas práticas de autenticação (ex: uso correto do MFA, criação de passphrases longas e proibição de partilha de credenciais) é administrada a 100% dos utilizadores e administradores de sistema?",
+            "q2_label": "Execução e Automação",
+            "q2": "A retenção deste conhecimento é verificada de forma solta, ou existem módulos interativos com testes de conhecimentos (quizzes) obrigatórios rastreados automaticamente através do portal corporativo de LMS?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A norma corporativa de controlo de acessos exige documentalmente a aprovação neste módulo, gerando KPIs que correlacionam os utilizadores que falham as boas práticas com os bloqueios forçados de senhas fracas no Active Directory/Entra ID?"
+          }
+        },
+        {
+          "id": "14.4",
+          "name": "Train Workforce on Data Handling Best Practices",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O ensino prático sobre o manuseamento seguro de dados (classificação, encriptação e destruição segura) é estendido de forma transversal a 100% dos perfis de negócio, com destaque para as áreas de RH, Financeira e Legal?",
+            "q2_label": "Execução e Automação",
+            "q2": "A disseminação das regras é feita apenas na indução inicial do colaborador, ou a organização automatiza lembretes operacionais (in-the-moment training) utilizando integrações com ferramentas de DLP (ex: Microsoft Purview) que educam o utilizador com pop-ups (policy tips) sempre que este tenta partilhar dados sensíveis?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de tratamento de dados está alinhado a normativos de privacidade formalizados (ex: RGPD), produzindo relatórios para o DPO/CISO sobre o volume de bloqueios de DLP conjugados com a taxa de formação dos utilizadores nas áreas ofensoras?"
+          }
+        },
+        {
+          "id": "14.5",
+          "name": "Train Workforce Members on Causes of Unintentional Data Exposure",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A consciencialização sobre as causas mais comuns de exposição acidental de dados (ex: uso indevido do CC/BCC, perda de pens USB, envio de documentos para o ecrã/impressora errada) atinge 100% das equipas de escritório e terreno?",
+            "q2_label": "Execução e Automação",
+            "q2": "As instruções contam unicamente com a memória do colaborador, ou são reforçadas de forma automatizada por add-ins de correio eletrónico (ex: Egress, VIPRE Safe Send) ou ferramentas de classificação que forçam a confirmação de destinatários antes de anexos sensíveis saírem da rede?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O manual de conduta interno tipifica os cenários de negligência involuntária de dados, originando métricas trimestrais apresentadas à gestão (ex: número de alertas de data leak confirmados como acidentais vs. incidentes maliciosos)?"
+          }
+        },
+        {
+          "id": "14.6",
+          "name": "Train Workforce Members on Recognizing and Reporting Security Incidents",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A capacitação tática sobre como reconhecer anomalias e reportar imediatamente um potencial incidente de cibersegurança abrange a totalidade de 100% dos colaboradores na estrutura orgânica?",
+            "q2_label": "Execução e Automação",
+            "q2": "Para reportar um incidente o utilizador tem de procurar manualmente um formulário ou e-mail na intranet, ou o reporte está a um clique de distância, perfeitamente automatizado através de botões de denúncia nos clientes de e-mail (ex: Phish Alert Button) que enviam os dados diretamente para a fila de tickets do SOC?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A Política de Gestão e Resposta a Incidentes documenta formalmente a obrigação dos colaboradores de reportarem eventos anómalos, apresentando indicadores-chave ao board sobre a percentagem de ameaças intercetadas por denúncia dos utilizadores face à deteção tecnológica?"
+          }
+        },
+        {
+          "id": "14.7",
+          "name": "Train Workforce on How to Identify and Report if Their Enterprise Assets are Missing Security Updates",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A instrução para interpretar, não ignorar e reportar notificações de atualizações pendentes nos sistemas operativos e web browsers (ex: janelas de reboot forçado no Windows/macOS) é garantida a 100% da força de trabalho com equipamentos associados?",
+            "q2_label": "Execução e Automação",
+            "q2": "O reforço desta prática é puramente verbal, ou é impulsionado por mecanismos de gestão de endpoints (ex: Microsoft SCCM, Intune, Automox) que enviam caixas de diálogo e pop-ups educativos automáticos (Custom Notifications) antes de forçarem o reinício por segurança?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A norma técnica de posto de trabalho responsabiliza o utilizador pelas janelas de reinício, alimentando métricas de Patch Management que reportam à direção o rácio de utilizadores ou departamentos que procrastinam cronicamente a instalação de atualizações críticas?"
+          }
+        },
+        {
+          "id": "14.8",
+          "name": "Train Workforce on the Dangers of Connecting to and Transmitting Data Over Insecure Networks",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A consciencialização sobre os perigos inerentes a redes abertas e não seguras (ex: Wi-Fi público de aeroportos, hotéis e cafés) é ativamente entregue a 100% dos utilizadores com privilégios de mobilidade, trabalho remoto ou acesso via VPN?",
+            "q2_label": "Execução e Automação",
+            "q2": "A proteção assenta exclusivamente na obediência cega do utilizador à política, ou a formação é materializada e imposta por soluções tecnológicas de automação (ex: Always On VPN corporativo ou Zero Trust Network Access) que trancam todo o tráfego em clear-text perante ligações externas não fidedignas?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O regulamento de teletrabalho e acessos remotos consagra formalmente a proibição de uso de redes inseguras, gerando registos de auditoria e métricas que demonstrem quantas sessões corporativas foram estabelecidas com sucesso e protegidas contra spoofing/MITM a partir do exterior?"
+          }
+        },
+        {
+          "id": "14.9",
+          "name": "Conduct Role-Specific Security Awareness and Skills Training",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "Qual é o nível de cobertura e mapeamento dos treinamentos de segurança específicos por função na sua organização? Por exemplo, vocês possuem uma Matriz de Treinamento e Habilidades (Skills Matrix) que garanta que todos os perfis críticos estejam cobertos (ex: desenvolvedores recebendo treinamento focado no OWASP Top 10, profissionais de TI em administração segura e executivos de alto perfil em engenharia social avançada)?",
+            "q2_label": "Execução e Automação",
+            "q2": "Como é realizada a entrega e o acompanhamento diário desses treinamentos para os colaboradores? O processo é ad hoc e manual (ex: controle via planilhas de Excel e envio de PDFs) ou ocorre de forma contínua e automatizada utilizando plataformas LMS de mercado (ex: KnowBe4, SANS Security Awareness, Infosec IQ ou Pluralsight para desenvolvedores)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Como é estruturada a governança e a medição de eficácia deste controle perante o negócio? O processo é respaldado por documentação formal (ex: Política de Conscientização de Segurança ou Norma de Desenvolvimento Seguro) e medido por indicadores de risco/KPIs (ex: taxa de conclusão por departamento, redução da taxa de cliques em phishing pela diretoria ou queda no volume de vulnerabilidades em novos códigos)?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Service Provider Management",
+      "safeguards": [
+        {
+          "id": "15.1",
+          "name": "Establish and Maintain an Inventory of Service Providers",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário centralizado de fornecedores de serviços (incluindo MSPs, parceiros Cloud, e plataformas SaaS) mapeia e identifica 100% dos parceiros tecnológicos com acesso aos sistemas ou dados da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão deste inventário baseia-se em folhas de cálculo estáticas e manuais, ou é mantida de forma contínua e integrada através de plataformas de GRC e Third-Party Risk Management (ex: ServiceNow Vendor Risk Management, OneTrust, RSA Archer)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma política formal que exija a revisão anual rigorosa deste inventário (identificando o contacto do gestor do contrato), gerando relatórios sobre o volume de fornecedores não homologados detetados na rede (Shadow IT)?"
+          }
+        },
+        {
+          "id": "15.2",
+          "name": "Establish and Maintain a Service Provider Management Policy",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A política corporativa de gestão de fornecedores abrange 100% do ciclo de vida do parceiro (desde a avaliação inicial até ao desmantelamento final) em todas as áreas de negócio?",
+            "q2_label": "Execução e Automação",
+            "q2": "A imposição desta política depende do bom senso e da memória do departamento de compras, ou está ativamente orquestrada através de um fluxo obrigatório (workflow) no portal de ITSM ou sistema de procurement (ex: SAP Ariba, Jira Service Management) que bloqueia adjudicações sem o crivo da segurança?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política encontra-se formalmente aprovada pela administração e é revista anualmente, suportando KPIs gerenciais, como a percentagem de novos fornecedores que completaram o processo formal de onboarding de segurança?"
+          }
+        },
+        {
+          "id": "15.3",
+          "name": "Classify Service Providers",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O modelo de classificação de risco e criticidade para prestadores de serviços é aplicado ativamente a 100% dos fornecedores vigentes no ecossistema da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O cálculo do risco inerente do fornecedor é efetuado de forma empírica e manual, ou processado automaticamente através de questionários dinâmicos e algoritmos em plataformas especializadas (ex: OneTrust Vendorpedia, Prevalent) com base no volume e sensibilidade dos dados partilhados?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A matriz e os critérios de classificação estão definidos num normativo estruturado, produzindo painéis de controlo (dashboards) executivos que destacam imediatamente à direção quais são os fornecedores de criticidade 'Alta' e 'Extrema'?"
+          }
+        },
+        {
+          "id": "15.4",
+          "name": "Ensure Service Provider Contracts Include Security Requirements",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A imposição de requisitos rigorosos de segurança e notificação de incidentes (ex: SLAs rígidos para o reporte de data breaches) está assegurada em 100% dos contratos, adendas e SLAs firmados com terceiros?",
+            "q2_label": "Execução e Automação",
+            "q2": "A validação destas cláusulas exige a leitura morosa e manual de PDFs por parte do departamento jurídico e de TI, ou a organização já integra minutas-padrão automatizadas no seu Contract Lifecycle Management (CLM) com bloqueios sistémicos caso os requisitos de cibersegurança sejam omitidos?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de compras exige documentalmente as cláusulas de segurança como pré-requisito não negociável, gerando relatórios de auditoria que identificam e enumeram os contratos legados que ainda carecem de atualização (aditamentos de segurança)?"
+          }
+        },
+        {
+          "id": "15.5",
+          "name": "Assess Service Providers",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "As auditorias rigorosas de segurança (security assessments) são exigidas e conduzidas perante 100% dos fornecedores classificados como críticos, antes da contratação e na renovação dos serviços?",
+            "q2_label": "Execução e Automação",
+            "q2": "A avaliação depende da troca morosa de e-mails para validar certificações (SOC 2, ISO 27001) e PDFs extensos, ou tira partido de plataformas automatizadas que ingerem respostas a questionários standard de mercado (ex: CAIQ da CSA ou SIG Core geridos via Panorays, ProcessUnity)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O fluxo de aceitação ou rejeição de um parceiro está procedimentado formalmente, resultando em métricas claras de negócio sobre a taxa de fornecedores aprovados com reservas e as respetivas assinaturas de aceitação de risco pelos donos do processo (Risk Acceptance)?"
+          }
+        },
+        {
+          "id": "15.6",
+          "name": "Monitor Service Providers",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A monitorização contínua da postura de segurança em ambiente de produção abrange 100% dos parceiros classificados com impacto elevado para as operações da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A equipa aguarda de forma reativa que os fornecedores comuniquem os seus incidentes, ou utiliza ativamente serviços automatizados de inteligência de ameaças, monitorização da Dark Web e plataformas de Security Ratings (ex: SecurityScorecard, BitSight, UpGuard) para alertar sobre o declínio da postura de segurança do fornecedor?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A obrigação da monitorização contínua está definida nos normativos de GRC, alimentando a comissão executiva com relatórios trimestrais sobre parceiros que apresentem descidas perigosas na sua classificação técnica (rating) de cibersegurança externa?"
+          }
+        },
+        {
+          "id": "15.7",
+          "name": "Securely Decommission Service Providers",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo formal de desmantelamento (decommissioning) seguro, incluindo o término de fluxos de dados, destruição de informação e corte de ligações, ocorre sem falhas em 100% dos encerramentos de contratos de TI?",
+            "q2_label": "Execução e Automação",
+            "q2": "O desmantelamento depende da execução manual de um checklist por um analista que muitas vezes é esquecido, ou tira partido da automatização por parte de ferramentas de IAM/IGA para efetuar a revogação instantânea de contas federação (B2B) e acessos de VPN (ex: Azure AD B2B Lifecycle Management, Okta)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um documento de offboarding estritamente formalizado, exigindo a entrega de certificados de destruição de dados (Certificate of Destruction) por parte do prestador, gerando métricas de auditoria relativas ao tempo médio de remoção de acessos assim que um contrato termina?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Application Software Security",
+      "safeguards": [
+        {
+          "id": "16.1",
+          "name": "Establish and Maintain a Secure Application Development Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo documentado de desenvolvimento seguro (SDLC) abrange 100% dos projetos de software desenvolvidos internamente e adquiridos a terceiros na organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "As práticas de segurança dependem da memória e verificação manual dos developers, ou estão intrinsecamente integradas e orquestradas de forma contínua nos pipelines de CI/CD (ex: GitLab CI, Azure DevOps, Jenkins)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um normativo formal de DevSecOps alinhado a standards do mercado (ex: OWASP), produzindo relatórios para a direção com métricas sobre a taxa de adoção do processo seguro nas várias equipas de desenvolvimento?"
+          }
+        },
+        {
+          "id": "16.2",
+          "name": "Establish and Maintain a Process to Accept and Address Software Vulnerabilities",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo formal para receber, triar e tratar reports de vulnerabilidades abrange 100% das aplicações expostas ao público e serviços críticos internos da empresa?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha de vulnerabilidades é feita através de uma caixa de email genérica gerida manualmente, ou está estruturada e automatizada através de plataformas de Vulnerability Disclosure/Bug Bounty (ex: HackerOne, Bugcrowd) integradas diretamente no Jira/Trello?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de tratamento de vulnerabilidades define SLAs rigorosos baseados na gravidade, gerando indicadores-chave (KPIs) sobre os tempos de triagem e remediação (MTTD e MTTR) apresentados à administração?"
+          }
+        },
+        {
+          "id": "16.3",
+          "name": "Perform Root Cause Analysis on Security Vulnerabilities",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A análise de causa raiz (RCA) para avaliar os problemas subjacentes ao código é efetuada sistematicamente em 100% das vulnerabilidades críticas e recorrentes detetadas no ambiente?",
+            "q2_label": "Execução e Automação",
+            "q2": "A RCA é feita em reuniões ad hoc sem registo estruturado, ou é registada e correlacionada através de ferramentas automatizadas de gestão de defeitos e ASPM (ex: DefectDojo, Jira Issue Tracking) que associam a falha ao commit específico?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de desenvolvimento exige documentalmente a execução da RCA antes do encerramento de incidentes críticos, gerando métricas gerenciais sobre a tipologia de falhas de arquitetura ou código mais frequentes na organização?"
+          }
+        },
+        {
+          "id": "16.4",
+          "name": "Establish and Manage an Inventory of Third-Party Software Components",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O inventário atualizado de componentes de terceiros (Bill of Materials - SBOM) cobre 100% das bibliotecas open-source e frameworks utilizadas em todos os projetos de software da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O mapeamento destas bibliotecas depende de listas manuais em folhas de cálculo, ou é gerado e atualizado de forma contínua por ferramentas de Software Composition Analysis (SCA) (ex: Snyk, Black Duck, OWASP Dependency-Track) injetadas no pipeline?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe uma diretiva que obrigue à revisão, no mínimo mensal, do SBOM, produzindo relatórios de gestão de risco que demonstrem a percentagem de componentes órfãos ou vulneráveis em produção?"
+          }
+        },
+        {
+          "id": "16.5",
+          "name": "Use Up-to-Date and Trusted Third-Party Software Components",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A garantia de utilização exclusiva de componentes de terceiros atualizados e fidedignos é rigorosamente imposta em 100% das compilações (builds) e ambientes de desenvolvimento?",
+            "q2_label": "Execução e Automação",
+            "q2": "A validação das bibliotecas antes de irem para produção requer aprovação manual, ou o bloqueio de componentes críticos/vulneráveis é feito de forma automatizada (quebrando o build) através de plataformas de governança (ex: Nexus Lifecycle, JFrog Xray, Snyk)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de cadeia de fornecimento de software (Supply Chain Security) detalha os repositórios aprovados, gerando métricas mensais reportadas à gestão sobre o volume de bibliotecas com vulnerabilidades severas bloqueadas no ciclo de CI/CD?"
+          }
+        },
+        {
+          "id": "16.6",
+          "name": "Establish and Maintain a Severity Rating System and Process for Application Vulnerabilities",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O sistema de classificação de gravidade (ex: CVSS) e priorização aplica-se de forma estandardizada a 100% das vulnerabilidades aplicacionais descobertas, quer sejam de código próprio ou de terceiros?",
+            "q2_label": "Execução e Automação",
+            "q2": "A pontuação do risco é atribuída manualmente por um analista, ou é calculada, ingerida e priorizada de forma automatizada por plataformas de gestão de vulnerabilidades que analisam o contexto e a explorabilidade (ex: Kenna Security, Checkmarx)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de desenvolvimento define um limiar mínimo de segurança documentado (Quality Gates, ex: zero falhas críticas para fazer deploy), reportando métricas claras sobre bloqueios de lançamento de software (release blockers) devido a risco elevado?"
+          }
+        },
+        {
+          "id": "16.7",
+          "name": "Use Standard Hardening Configuration Templates for Application Infrastructure",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação de templates de configuração segura (hardening) cobre 100% da infraestrutura aplicacional (incluindo servidores web, bases de dados, contentores Docker e PaaS)?",
+            "q2_label": "Execução e Automação",
+            "q2": "O hardening é efetuado através de comandos manuais no terminal, ou é garantido através de automação contínua de Infrastructure-as-Code (IaC) e ferramentas de compliance (ex: Terraform, Ansible, Docker Bench for Security)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A infraestrutura aplicacional rege-se por standards documentados (ex: CIS Benchmarks), existindo dashboards gerenciais que demonstram o desvio de configuração (configuration drift) entre os templates de referência e a produção real?"
+          }
+        },
+        {
+          "id": "16.8",
+          "name": "Separate Production and Non-Production Systems",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A separação rigorosa de ambientes e dados entre produção, testes, desenvolvimento e QA está em vigor em 100% dos projetos e infraestruturas da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O isolamento baseia-se unicamente em boas práticas e restrições locais manuais, ou é imposto por segmentação de rede estrita, separação física ou lógica automatizada (ex: Contas AWS separadas, subscrições Azure distintas, RBAC forte)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existem normativos arquiteturais que proíbam terminantemente o uso de dados reais de clientes em ambientes não produtivos sem anonimização prévia, gerando métricas e registos de auditoria sobre acessos inter-ambientes?"
+          }
+        },
+        {
+          "id": "16.9",
+          "name": "Train Developers in Application Security Concepts and Secure Coding",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A formação orientada à escrita de código seguro (ex: OWASP Top 10) e práticas de segurança é fornecida a 100% dos developers, arquitetos e engenheiros de software da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "O treino baseia-se em visualizações esporádicas de PowerPoint, ou a empresa fornece plataformas interativas de e-learning contínuo e integrado nas IDEs dos developers (ex: Secure Code Warrior, HackEdu, SonarLint)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de RH e TI estabelece formalmente a obrigatoriedade desta formação anualmente, produzindo KPIs de negócio que cruzam a densidade de falhas introduzidas no código com as taxas de conclusão da formação por cada developer?"
+          }
+        },
+        {
+          "id": "16.10",
+          "name": "Apply Secure Design Principles in Application Architectures",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A aplicação de princípios de design seguro (como a menor permissão e a validação implacável de inputs) é requisito arquitetural para 100% das novas aplicações e refatorizações de sistemas core?",
+            "q2_label": "Execução e Automação",
+            "q2": "A validação e restrição de inputs baseia-se apenas no rigor humano a programar, ou tira partido de mecanismos tecnológicos automatizados implementados transversalmente (ex: WAFs corporativos, API Gateways como Kong/Apigee, sanitização centralizada de frameworks)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A aprovação da arquitetura de uma nova aplicação passa obrigatoriamente por um conselho de revisão documentado, gerando métricas periódicas sobre o número de vulnerabilidades de desenho (design flaws) intercetadas antes de o código ser escrito?"
+          }
+        },
+        {
+          "id": "16.11",
+          "name": "Leverage Vetted Modules or Services for Application Security Components",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A obrigatoriedade de utilizar módulos e serviços corporativos pré-aprovados e auditados (para funções como IAM, criptografia e logging) cobre 100% das aplicações construídas na empresa?",
+            "q2_label": "Execução e Automação",
+            "q2": "A integração destes componentes é facultativa levando à criação de criptografia 'caseira' manual, ou os developers são forçados a consumir APIs orquestradas de serviços empresariais centralizados (ex: Microsoft Entra ID para Auth, HashiCorp Vault para segredos)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O catálogo de módulos de segurança validados encontra-se formalmente documentado pela arquitetura corporativa, produzindo relatórios de segurança sobre aplicações que violam a norma e utilizam serviços criptográficos não homologados?"
+          }
+        },
+        {
+          "id": "16.12",
+          "name": "Implement Code-Level Security Checks",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A execução de verificações de segurança ao nível do código (SAST e DAST) abrange 100% dos repositórios ativos e do ciclo de vida das aplicações em desenvolvimento?",
+            "q2_label": "Execução e Automação",
+            "q2": "As análises de segurança implicam a execução manual da ferramenta antes da entrega do projeto, ou operam de forma contínua e automatizada a cada commit ou pull request dentro do pipeline CI/CD (ex: SonarQube, Checkmarx, Veracode, Fortify)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A adoção de Quality Gates automatizados no código obedece a normativos de segurança formais, produzindo dashboards executivos sobre a densidade de vulnerabilidades corrigidas na fase de desenvolvimento vs. fase de produção?"
+          }
+        },
+        {
+          "id": "16.13",
+          "name": "Conduct Application Penetration Testing",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A realização de testes de intrusão (pentests) detalhados, combinando abordagens autenticadas e não autenticadas, cobre 100% das aplicações críticas e expostas ao público externo?",
+            "q2_label": "Execução e Automação",
+            "q2": "O teste é apenas esporádico e manual dependente da disponibilidade de orçamentos anuais, ou a organização mantém uma cadência orquestrada de pentests combinada com scanning DAST contínuo (ex: Burp Suite Enterprise) gerido pelo pipeline de releases?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de testes de segurança estipula de forma documentada a exigência de pentest antes do go-live de sistemas core, com os resultados a alimentarem KPIs reportados ao board sobre falhas na lógica de negócio e os respetivos planos de remediação?"
+          }
+        },
+        {
+          "id": "16.14",
+          "name": "Conduct Threat Modeling",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A execução de Threat Modeling (modelação de ameaças) para identificar falhas de design aplica-se de forma sistemática a 100% das aplicações com perfis de risco alto e médio antes da fase de codificação?",
+            "q2_label": "Execução e Automação",
+            "q2": "O processo consiste em simples sessões ad hoc num quadro branco (whiteboard) sem rastreabilidade, ou é conduzido de modo estruturado e rastreável utilizando ferramentas especializadas (ex: IriusRisk, Microsoft Threat Modeling Tool, OWASP Threat Dragon)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O SDLC corporativo incorpora formal e documentalmente a modelação de ameaças como um step obrigatório na arquitetura, gerando relatórios de risco sobre as mitigações (security controls) definidas e implementadas ainda na fase de design?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Incident Response Management",
+      "safeguards": [
+        {
+          "id": "17.1",
+          "name": "Designate Personnel to Manage Incident Handling",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A designação de pessoal principal e substituto (backup) para a gestão de incidentes de cibersegurança cobre 100% dos turnos de operação (ex: regime 24x7, on-call) e abrange todas as geografias críticas da organização?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão de escalas e acionamento da equipa é feita de forma manual via chamadas telefónicas, ou está orquestrada continuamente através de plataformas automatizadas de ITSM e paging (ex: PagerDuty, Opsgenie, ServiceNow Incident Management)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um documento formal de nomeação da equipa de resposta (CSIRT), gerando relatórios de gestão periódicos sobre a taxa de cobertura de turnos e o Tempo Médio de Reconhecimento (MTTA) dos alertas?"
+          }
+        },
+        {
+          "id": "17.2",
+          "name": "Establish and Maintain Contact Information for Reporting Security Incidents",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O diretório de contactos de emergência (internos, fornecedores de resposta, autoridades legais e Relações Públicas) está acessível e abrange 100% dos stakeholders críticos necessários numa crise?",
+            "q2_label": "Execução e Automação",
+            "q2": "Estes contactos estão guardados num ficheiro estático que pode ficar inacessível, ou são centralizados e mantidos numa plataforma de gestão de incidentes (ex: TheHive, Cortex XSOAR) permitindo o acionamento imediato (call-out) com um clique?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política de gestão de incidentes exige a revisão e teste semestral deste diretório, produzindo métricas e registos de auditoria sobre contactos obsoletos encontrados durante as simulações?"
+          }
+        },
+        {
+          "id": "17.3",
+          "name": "Establish and Maintain an Enterprise Process for Reporting Incidents",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O canal oficial para que qualquer colaborador ou sistema reporte um potencial incidente abrange 100% do ecossistema da organização, incluindo postos de trabalho remotos e prestadores de serviços?",
+            "q2_label": "Execução e Automação",
+            "q2": "O reporte depende do envio de e-mails de formato livre, ou existe um processo integrado e automatizado (ex: botão 'Report Phish' no Outlook, formulários estruturados no Jira Service Desk) que cria o ticket e efetua a triagem de severidade inicial?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Há um SLA formalmente documentado para a triagem e tratamento do reporte inicial, gerando KPIs sobre o volume de incidentes reais reportados ativamente por utilizadores versus os detetados pelas ferramentas de segurança?"
+          }
+        },
+        {
+          "id": "17.4",
+          "name": "Establish and Maintain an Incident Response Process",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O plano documentado de resposta a incidentes (IRP) cobre 100% das fases normativas (preparação, deteção, contenção, erradicação e recuperação) para as principais tipologias de ataque (ex: Ransomware, Fuga de Dados)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A execução da contenção depende da consulta manual de PDFs morosos pela equipa, ou assenta em Playbooks dinâmicos executados por plataformas SOAR (ex: Splunk SOAR, FortiSOAR) que interagem automaticamente com firewalls e EDRs para isolar ameaças?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O IRP é aprovado pela administração e revisto anualmente, produzindo indicadores-chave essenciais (ex: MTTR - Tempo Médio de Resolução, Dwell Time - Tempo de permanência do atacante) para reportar o nível de risco ao board?"
+          }
+        },
+        {
+          "id": "17.5",
+          "name": "Assign Key Roles and Responsibilities",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A atribuição de papéis específicos de crise (ex: Incident Commander, Lead Analyst, Assessor Jurídico, Porta-Voz) abrange 100% dos cenários classificados como incidentes graves ou catastróficos?",
+            "q2_label": "Execução e Automação",
+            "q2": "A mobilização destes papéis num incidente real é decidida no momento de forma ad hoc, ou é desencadeada de imediato através de automação (ex: criação instantânea de salas de crise/war rooms no Microsoft Teams/Slack, integradas com as ferramentas do SOC)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A matriz de responsabilidades (RACI) para crises está estritamente definida nos normativos de segurança, havendo auditorias aos incidentes passados para validar formalmente se a cadeia de comando foi rigorosamente respeitada?"
+          }
+        },
+        {
+          "id": "17.6",
+          "name": "Define Mechanisms for Communicating During Incident Response",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A existência de canais de comunicação seguros e alternativos (out-of-band) cobre 100% da equipa de gestão de crise, garantindo operação contínua mesmo em caso de comprometimento severo da rede core (ex: falha/compromisso do Active Directory e Exchange)?",
+            "q2_label": "Execução e Automação",
+            "q2": "Estes meios alternativos dependem da utilização improvisada de telemóveis pessoais, ou a organização garante plataformas resilientes isoladas (ex: instâncias de Signal corporativo, tenants paralelos na cloud) para evitar interceção de dados sensíveis pelo atacante?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O plano de comunicações de crise encontra-se documentado, gerando relatórios de revisão pós-incidente focados em métricas de falhas ou atrasos comunicacionais experienciados durante o período crítico do ataque?"
+          }
+        },
+        {
+          "id": "17.7",
+          "name": "Conduct Routine Incident Response Exercises",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A execução de exercícios práticos (tabletop exercises) ou simulações técnicas (Red/Blue team) envolve 100% dos membros do CSIRT, executivos de TI e representantes críticos do negócio?",
+            "q2_label": "Execução e Automação",
+            "q2": "Os exercícios são essencialmente discussões teóricas, ou utilizam plataformas tecnológicas de simulação contínua (Breach and Attack Simulation - ex: Picus, SafeBreach) para validar automaticamente se os playbooks de defesa funcionam em cenários reais?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um calendário formal estipulando a execução destes exercícios (no mínimo anualmente), culminando num relatório vinculativo para a administração com planos de ação corretiva para as falhas (gaps) identificadas?"
+          }
+        },
+        {
+          "id": "17.8",
+          "name": "Conduct Post-Incident Reviews",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O processo de revisão pós-incidente e extração de lições aprendidas (Lessons Learned) aplica-se obrigatoriamente a 100% dos incidentes classificados com severidade alta ou de impacto no negócio?",
+            "q2_label": "Execução e Automação",
+            "q2": "A recolha de dados para a elaboração do relatório baseia-se em memórias e anotações avulsas, ou tira partido das timelines geradas automaticamente e exportadas pelas ferramentas analíticas do SOC e SIEM?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A política obriga à tradução das lições aprendidas num plano de melhoria contínua formal (com prazos definidos), fornecendo à gestão de risco métricas sobre os itens de ação pós-incidente que se encontram em atraso (overdue)?"
+          }
+        },
+        {
+          "id": "17.9",
+          "name": "Establish and Maintain Security Incident Thresholds",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "Os limiares (thresholds) técnicos e de negócio que desencadeiam a elevação de um simples 'alerta' para a declaração oficial de um 'Incidente' cobrem 100% dos cenários de risco desenhados pela empresa (ex: >1000 utilizadores offline, exfiltração confirmada)?",
+            "q2_label": "Execução e Automação",
+            "q2": "A passagem de alerta a incidente depende exclusivamente da intuição do analista em turno, ou os limiares de gravidade estão codificados e automatizados no SIEM/SOAR para efetuar um escalonamento imediato e sistemático?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A matriz de triagem e severidade está estipulada e aprovada num normativo do CSIRT, gerando métricas de eficácia sobre o tempo médio de triagem (Triage Time) e o volume de falsos positivos reportados como incidentes maiores?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Penetration Testing",
+      "safeguards": [
+        {
+          "id": "18.1",
+          "name": "Establish and Maintain a Penetration Testing Program",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O programa formal de testes de intrusão abrange 100% dos ativos críticos da organização, englobando infraestrutura de rede, aplicações web, APIs e ambientes cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "A gestão do programa e o rastreio das atividades baseiam-se em troca de e-mails avulsos, ou são orquestrados de forma contínua através de plataformas de gestão de vulnerabilidades e pentesting (ex: DefectDojo, PlexTrac, Faraday) integradas ao ciclo de desenvolvimento?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe um normativo que defina as regras de engajamento (Rules of Engagement), a frequência e o escopo dos testes, gerando indicadores para a direção sobre a cadência e cobertura dos testes em relação ao total de ativos?"
+          }
+        },
+        {
+          "id": "18.2",
+          "name": "Perform Periodic External Penetration Tests",
+          "ig": 1,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "Os testes de intrusão externos (external pentests) avaliam rigorosamente 100% da superfície de ataque exposta à Internet (IPs públicos, aplicações web, VPNs, serviços em cloud)?",
+            "q2_label": "Execução e Automação",
+            "q2": "Os testes são realizados apenas manualmente uma vez por ano, ou a organização complementa a avaliação com plataformas de simulação contínua e Automated Pentesting (ex: Pentera, XM Cyber, Core Impact) para detetar vetores de ataque externos em tempo real?",
+            "q3_label": "Governança e Métricas",
+            "q3": "A exigência de realização destes testes anuais (no mínimo) está documentada na política de cibersegurança, produzindo relatórios executivos com métricas como a percentagem de falhas críticas detetadas do lado exterior (perimeter breaches)?"
+          }
+        },
+        {
+          "id": "18.3",
+          "name": "Remediate Penetration Test Findings",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "O esforço de correção (remediação) das vulnerabilidades encontradas nos testes aplica-se a 100% dos achados, independentemente de estarem alojados em sistemas legados, infraestrutura core ou filiais?",
+            "q2_label": "Execução e Automação",
+            "q2": "O acompanhamento do fecho destas falhas depende de folhas de cálculo desatualizadas, ou o processo é automatizado através da injeção direta dos achados (findings) em sistemas de ticketing de TI (ex: Jira, ServiceNow) com prazos de resolução impostos pelo sistema?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O processo de remediação segue um acordo de nível de serviço (SLA) formal baseado no risco da vulnerabilidade, gerando KPIs sobre o tempo médio de mitigação (MTTR) e a acumulação de risco aceite (Risk Acceptance)?"
+          }
+        },
+        {
+          "id": "18.4",
+          "name": "Validate Security Measures",
+          "ig": 2,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "A validação pós-pentest (re-test) e a adaptação das defesas (ex: regras de firewalls e SIEM) cobrem 100% dos controlos contornados ou explorados com sucesso pelos auditores durante o teste de intrusão?",
+            "q2_label": "Execução e Automação",
+            "q2": "A afinação dos controlos é feita baseada na intuição da equipa de rede, ou existe um processo orquestrado onde os dados do pentest são usados para gerar automaticamente novas regras no WAF, EDR ou NIDS (ex: virtual patching via F5, atualização de regras YARA/Sigma)?",
+            "q3_label": "Governança e Métricas",
+            "q3": "O procedimento de teste exige a emissão de um relatório formal de 'Re-Test' que valide a eficácia das correções, apresentando métricas à administração sobre o retorno de investimento (ROI) na afinação das defesas existentes?"
+          }
+        },
+        {
+          "id": "18.5",
+          "name": "Perform Periodic Internal Penetration Tests",
+          "ig": 3,
+          "questions": {
+            "q1_label": "Abrangência",
+            "q1": "Os testes de intrusão internos abrangem ativamente 100% das VLANs corporativas, avaliando movimentos laterais (lateral movement), escalonamento de privilégios e a robustez do Active Directory on-premise e cloud?",
+            "q2_label": "Execução e Automação",
+            "q2": "As simulações internas limitam-se a ferramentas open-source usadas de forma ad hoc, ou são suportadas por equipas/serviços recorrendo a ferramentas empresariais de emulação de adversários e Purple Teaming (ex: Cobalt Strike, SCYTHE, Caldera) focadas em táticas do MITRE ATT&CK?",
+            "q3_label": "Governança e Métricas",
+            "q3": "Existe documentação que exija formalmente a realização periódica de pentests internos (no mínimo anuais), gerando relatórios de risco ao board sobre a capacidade do SOC em detetar e travar intrusos que já tenham ultrapassado o perímetro?"
+          }
+        }
+      ]
+    }
+  ]
+}

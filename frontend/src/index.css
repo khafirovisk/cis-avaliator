@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply antialiased; }
+  body { @apply bg-gray-950 text-gray-100; }
+}
+
+@layer components {
+  .card {
+    @apply bg-gray-900 border border-gray-800 rounded-xl p-6;
+  }
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-gray-800 hover:bg-gray-700 text-gray-100 font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+  .btn-danger {
+    @apply bg-red-900/50 hover:bg-red-800 text-red-300 font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+  .input {
+    @apply bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full;
+  }
+  .textarea {
+    @apply bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full resize-none;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-gray-900; }
+::-webkit-scrollbar-thumb { @apply bg-gray-700 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-600; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.25s ease-out; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  @apply inline-block w-5 h-5 border-2 border-gray-600 border-t-blue-500 rounded-full;
+  animation: spin 0.7s linear infinite;
+}
